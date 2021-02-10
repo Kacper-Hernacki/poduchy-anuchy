@@ -1,26 +1,26 @@
-import React from "react";
+import React from 'react';
 
 export default function Header() {
   return (
     <header>
-      <div className='header-inner'>
-        <div className='logo'>CHAIR.</div>
+      <div className="header-inner">
+        <div className="logo">Poduchy Anuchy</div>
         <nav>
           <ul>
             <li>
-              <a href='/'>discover</a>
+              <a href="/">Strona Główna</a>
             </li>
             <li>
-              <a href='/'>products</a>
+              <a href="/">O mnie</a>
             </li>
             <li>
-              <a href='/'>solutions</a>
+              <a href="/">Produkty</a>
             </li>
             <li>
-              <a href='/'>reach</a>
+              <a href="/">Jak Zamówić</a>
             </li>
-            <li className='btn'>
-              <a href='/'>order</a>
+            <li className="btn">
+              <a href="/">Kontakt</a>
             </li>
           </ul>
         </nav>

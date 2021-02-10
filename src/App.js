@@ -1,20 +1,20 @@
-import React, { useRef, useEffect, useState, Suspense } from "react";
-import "./App.scss";
+import React, { useRef, useEffect, useState, Suspense } from 'react';
+import './App.scss';
 //Components
-import Header from "./components/header";
-import { Section } from "./components/section";
+import Header from './components/header';
+import { Section } from './components/section';
 
 // Page State
-import state from "./components/state";
+import state from './components/state';
 
 // R3F
-import { Canvas, useFrame } from "react-three-fiber";
-import { Html, useProgress, useGLTFLoader } from "drei";
+import { Canvas, useFrame } from 'react-three-fiber';
+import { Html, useProgress, useGLTFLoader } from 'drei';
 
 // React Spring
-import { a, useTransition } from "@react-spring/web";
+import { a, useTransition } from '@react-spring/web';
 //Intersection Observer
-import { useInView } from "react-intersection-observer";
+import { useInView } from 'react-intersection-observer';
 
 function Model({ url }) {
   const gltf = useGLTFLoader(url, true);
@@ -54,7 +54,9 @@ const HTMLContent = ({
   position,
 }) => {
   const ref = useRef();
-  useFrame(() => (ref.current.rotation.y += 0.01));
+  useFrame(
+    () => ((ref.current.rotation.y += 0.01), (ref.current.rotation.x += 0.01))
+  );
   const [refItem, inView] = useInView({
     threshold: 0,
   });
@@ -64,12 +66,12 @@ const HTMLContent = ({
   return (
     <Section factor={1.5} offset={1}>
       <group position={[0, position, 0]}>
-        <mesh ref={ref} position={[0, -35, 0]}>
+        <mesh ref={ref} position={[0, 2, 115]}>
           <Model url={modelPath} />
         </mesh>
         <Html fullscreen portal={domContent}>
-          <div ref={refItem} className='container'>
-            <h1 className='title'>{children}</h1>
+          <div ref={refItem} className="container">
+            <h1 className="title">{children}</h1>
           </div>
         </Html>
       </group>
@@ -87,9 +89,9 @@ function Loader() {
   return transition(
     ({ progress, opacity }, active) =>
       active && (
-        <a.div className='loading' style={{ opacity }}>
-          <div className='loading-bar-container'>
-            <a.div className='loading-bar' style={{ width: progress }}></a.div>
+        <a.div className="loading" style={{ opacity }}>
+          <div className="loading-bar-container">
+            <a.div className="loading-bar" style={{ width: progress }}></a.div>
           </div>
         </a.div>
       )
@@ -116,39 +118,35 @@ export default function App() {
         <Suspense fallback={null}>
           <HTMLContent
             domContent={domContent}
-            bgColor='#f15946'
-            modelPath='/armchairYellow.gltf'
+            bgColor="linear-gradient(#6f001b, #cc7080)"
+            modelPath="/pillow.gltf"
             position={250}>
-            <span>Meet the new </span>
-            <span>shopping experience </span>
-            <span>for online chairs</span>
+            <span>Poduchy Anuchy </span>
           </HTMLContent>
           <HTMLContent
             domContent={domContent}
-            bgColor='#571ec1'
-            modelPath='/armchairGreen.gltf'
+            bgColor="#cc7080"
+            modelPath="/pillowSecond.gltf"
             position={0}>
-            <span>Shit... we even</span>
-            <span>got different colors</span>
+            <span>Dziergane z pasją</span>
           </HTMLContent>
           <HTMLContent
             domContent={domContent}
-            bgColor='#636567'
-            modelPath='/armchairGray.gltf'
-            position={-250}>
-            <span>And yes</span>
-            <span>we even got</span>
-            <span>monochrome!</span>
+            bgColor="#cc7080"
+            modelPath="/pillowThird.gltf"
+            position={-262}>
+            <span>Zamów już dziś</span>
+            <button>Zamów Swoją Poduchę</button>
           </HTMLContent>
         </Suspense>
       </Canvas>
       <Loader />
       <div
-        className='scrollArea'
+        className="scrollArea"
         ref={scrollArea}
         onScroll={onScroll}
         {...events}>
-        <div style={{ position: "sticky", top: 0 }} ref={domContent} />
+        <div style={{ position: 'sticky', top: 0 }} ref={domContent} />
         <div style={{ height: `${state.pages * 100}vh` }} />
       </div>
     </>
