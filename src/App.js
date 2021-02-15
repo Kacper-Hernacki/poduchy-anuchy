@@ -1,23 +1,18 @@
-import React, { useRef, useEffect, useState, Suspense } from 'react';
+import React, { useRef, Suspense } from 'react';
 import './App.scss';
 //Components
-import Header from './components/header';
-import { Section } from './components/section';
 
-// Page State
-import state from './components/state';
+import { Section } from './components/section';
 
 // R3F
 import { Canvas, useFrame } from 'react-three-fiber';
-import { Html, useProgress, useGLTFLoader } from 'drei';
+import { Html, useGLTFLoader } from 'drei';
+import Header from './components/header';
 
-// React Spring
-import { a, useTransition } from '@react-spring/web';
-//Intersection Observer
-import { useInView } from 'react-intersection-observer';
+import main from './images/main.jpg';
 
 function Model({ url }) {
-  const gltf = useGLTFLoader(url, true);
+  const gltf = useGLTFLoader('/pillow.gltf', true);
   return <primitive object={gltf.scene} dispose={null} />;
 }
 
@@ -40,38 +35,25 @@ const Lights = () => {
         shadow-camera-top={10}
         shadow-camera-bottom={-10}
       />
-      {/* Spotlight Large overhead light */}
       <spotLight intensity={1} position={[1000, 0, 0]} castShadow />
     </>
   );
 };
 
-const HTMLContent = ({
-  domContent,
-  children,
-  bgColor,
-  modelPath,
-  position,
-}) => {
+const HTMLContent = () => {
   const ref = useRef();
   useFrame(
     () => ((ref.current.rotation.y += 0.01), (ref.current.rotation.x += 0.01))
   );
-  const [refItem, inView] = useInView({
-    threshold: 0,
-  });
-  useEffect(() => {
-    inView && (document.body.style.background = bgColor);
-  }, [inView]);
   return (
     <Section factor={1.5} offset={1}>
-      <group position={[0, position, 0]}>
-        <mesh ref={ref} position={[0, 2, 115]}>
-          <Model url={modelPath} />
+      <group position={[0, 21, 0]}>
+        <mesh ref={ref} position={[0, 0, 4]}>
+          <Model />
         </mesh>
-        <Html fullscreen portal={domContent}>
-          <div ref={refItem} className="container">
-            <h1 className="title">{children}</h1>
+        <Html prepend fullscreen>
+          <div className="container">
+            <h1 className="title">Poduchy Anuchy</h1>
           </div>
         </Html>
       </group>
@@ -79,32 +61,7 @@ const HTMLContent = ({
   );
 };
 
-function Loader() {
-  const { active, progress } = useProgress();
-  const transition = useTransition(active, {
-    from: { opacity: 1, progress: 0 },
-    leave: { opacity: 0 },
-    update: { progress },
-  });
-  return transition(
-    ({ progress, opacity }, active) =>
-      active && (
-        <a.div className="loading" style={{ opacity }}>
-          <div className="loading-bar-container">
-            <a.div className="loading-bar" style={{ width: progress }}></a.div>
-          </div>
-        </a.div>
-      )
-  );
-}
-
 export default function App() {
-  const [events, setEvents] = useState();
-  const domContent = useRef();
-  const scrollArea = useRef();
-  const onScroll = (e) => (state.top.current = e.target.scrollTop);
-  useEffect(() => void onScroll({ target: scrollArea.current }), []);
-
   return (
     <>
       <Header />
@@ -112,43 +69,13 @@ export default function App() {
       <Canvas
         concurrent
         colorManagement
-        camera={{ position: [0, 0, 120], fov: 70 }}>
+        camera={{ position: [0, 0, 10], fov: 70 }}>
         {/* Lights Component */}
         <Lights />
         <Suspense fallback={null}>
-          <HTMLContent
-            domContent={domContent}
-            bgColor="linear-gradient(#6f001b, #cc7080)"
-            modelPath="/pillow.gltf"
-            position={250}>
-            <span>Poduchy Anuchy </span>
-          </HTMLContent>
-          <HTMLContent
-            domContent={domContent}
-            bgColor="#cc7080"
-            modelPath="/pillowSecond.gltf"
-            position={0}>
-            <span>Dziergane z pasją</span>
-          </HTMLContent>
-          <HTMLContent
-            domContent={domContent}
-            bgColor="#cc7080"
-            modelPath="/pillowThird.gltf"
-            position={-262}>
-            <span>Zamów już dziś</span>
-            <button>Zamów Swoją Poduchę</button>
-          </HTMLContent>
+          <HTMLContent />
         </Suspense>
       </Canvas>
-      <Loader />
-      <div
-        className="scrollArea"
-        ref={scrollArea}
-        onScroll={onScroll}
-        {...events}>
-        <div style={{ position: 'sticky', top: 0 }} ref={domContent} />
-        <div style={{ height: `${state.pages * 100}vh` }} />
-      </div>
     </>
   );
 }

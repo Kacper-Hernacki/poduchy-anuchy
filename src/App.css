@@ -3,10 +3,11 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #cc7080;
+  background: #ff9898;
+  background: radial-gradient(circle, #ff9898 34%, #de7889 70%);
   transition: 0.4s ease-in-out;
 }
 
@@ -29,6 +30,25 @@ html {
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+}
+
+Canvas {
+  position: relative;
+  background-image: url(./images/main.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+Canvas::after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-color: #b5d4dd;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.6;
 }
 
 .scrollArea {
@@ -73,7 +93,6 @@ header .header-inner .logo {
 }
 
 header .header-inner nav ul {
-  font-family: 'Dancing Script', cursive;
   font-weight: 500;
   letter-spacing: 2px;
   color: #fff;

@@ -4,20 +4,20 @@ export default function Header() {
   return (
     <header>
       <div className="header-inner">
-        <div className="logo">Poduchy Anuchy</div>
+        <div className="logo">Poduchy&nbsp;Anuchy</div>
         <nav>
           <ul>
             <li>
-              <a href="/">Strona Główna</a>
+              <a href="/">Strona&nbsp;Główna</a>
             </li>
             <li>
-              <a href="/">O mnie</a>
+              <a href="/">O&nbsp;mnie</a>
             </li>
             <li>
               <a href="/">Produkty</a>
             </li>
             <li>
-              <a href="/">Jak Zamówić</a>
+              <a href="/">Jak&nbsp;Zamówić</a>
             </li>
             <li className="btn">
               <a href="/">Kontakt</a>
