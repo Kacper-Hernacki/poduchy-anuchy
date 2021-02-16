@@ -2,7 +2,11 @@ import React, { useRef, Suspense } from 'react';
 import './App.scss';
 //Components
 
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import { Section } from './components/section';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // R3F
 import { Canvas, useFrame } from 'react-three-fiber';
@@ -63,8 +67,10 @@ const HTMLContent = () => {
 export default function App() {
   return (
     <>
+      {/* <Router> */}
       <Header />
       {/* R3F Canvas */}
+      {/* <Switch> */}
       <Canvas
         concurrent
         colorManagement
@@ -75,6 +81,8 @@ export default function App() {
           <HTMLContent />
         </Suspense>
       </Canvas>
+      {/* </Switch>
+      </Router> */}
     </>
   );
 }

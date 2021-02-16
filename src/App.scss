@@ -1,3 +1,5 @@
+@import '~bootstrap/scss/bootstrap';
+
 * {
   box-sizing: border-box;
 }
@@ -98,6 +100,7 @@ Canvas::after {
 .title {
   font-family: 'Dancing Script', cursive;
   font-size: 10rem;
+  font-weight: 800;
   text-align: center;
   width: 100%;
   margin: 0 auto;
@@ -150,3 +153,5 @@ Canvas::after {
   height: 32px;
   background: #cc7080;
 }
+
+
