@@ -86,16 +86,16 @@ header .header-inner {
 
 header .header-inner .logo {
   font-family: 'Dancing Script', cursive;
-  font-weight: 500;
+  font-weight: 900;
   letter-spacing: 2px;
-  color: #fff;
+  color: #000;
   font-size: 20px;
 }
 
 header .header-inner nav ul {
-  font-weight: 500;
-  letter-spacing: 2px;
-  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #000;
   font-size: 15px;
   margin: 0;
   padding: 0;
@@ -108,7 +108,7 @@ header .header-inner nav ul li {
 }
 
 header .header-inner nav ul li.btn a {
-  color: #fff;
+  color: rgba(0, 0, 0, 0.378);
   font-weight: 600;
   background: #23232a;
   padding: 16px 24px;
@@ -118,7 +118,7 @@ header .header-inner nav ul li.btn a {
 header .header-inner nav ul li a {
   text-transform: capitalize;
   text-decoration: none;
-  color: #fff;
+  color: #000;
 }
 
 .title {

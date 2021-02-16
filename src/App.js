@@ -46,12 +46,13 @@ const HTMLContent = () => {
   return (
     <Section factor={1.5} offset={1}>
       <group position={[0, 21, 0]}>
-        <mesh ref={ref} position={[0, 0, 4]}>
+        <mesh ref={ref} position={[0, 0, 6]}>
           <Model />
         </mesh>
         <Html prepend fullscreen>
           <div className="container">
             <h1 className="title">Poduchy Anuchy</h1>
+            <button>Zamów teraz</button>
           </div>
         </Html>
       </group>

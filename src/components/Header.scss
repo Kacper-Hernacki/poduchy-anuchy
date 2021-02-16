@@ -1,0 +1,49 @@
+header {
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+  padding: 20px;
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo {
+      font-family: 'Dancing Script', cursive;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: rgb(61, 58, 58);
+      font-size: 20px;
+    }
+    nav {
+      ul {
+        font-weight: bold;
+        letter-spacing: 1px;
+        color: #000;
+        font-size: 15px;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        li {
+          list-style: none;
+          margin: 0 60px;
+
+          &.btn {
+            a {
+              color: rgb(0, 0, 0);
+              font-weight: 600;
+              background: #23232a3d;
+              padding: 16px 24px;
+              border-radius: 10px;
+            }
+          }
+          a {
+            text-transform: capitalize;
+            text-decoration: none;
+            color: rgb(61, 58, 58);
+          }
+        }
+      }
+    }
+  }
+}
