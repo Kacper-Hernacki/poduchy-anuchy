@@ -9,8 +9,6 @@ import { Canvas, useFrame } from 'react-three-fiber';
 import { Html, useGLTFLoader } from 'drei';
 import Header from './components/header';
 
-import main from './images/main.jpg';
-
 function Model({ url }) {
   const gltf = useGLTFLoader('/pillow.gltf', true);
   return <primitive object={gltf.scene} dispose={null} />;
