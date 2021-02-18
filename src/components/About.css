@@ -1,0 +1,41 @@
+.about h1 {
+  font-family: 'Dancing Script', cursive;
+  color: #ffffff !important;
+  text-shadow: 3.45px 3.45px #572e2e;
+  font-weight: bold !important;
+  font-size: 75px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.about .about__container {
+  margin-top: 50px;
+  display: flex;
+}
+
+.about .about__container .about__left {
+  flex: 0.5;
+  display: grid;
+  justify-content: center;
+}
+
+.about .about__container .about__left img {
+  object-fit: contain;
+  width: 400px !important;
+  -webkit-filter: drop-shadow(15px 15px 15px #572e2e);
+  filter: drop-shadow(15px 15px 15px #572e2e);
+  padding: 50px;
+}
+
+.about .about__container .about__right {
+  flex: 0.5;
+  padding: 50px;
+  padding-right: 70px;
+}
+
+.about .about__container .about__right p {
+  font-family: 'Courgette', cursive;
+  font-size: 20px;
+  color: #572e2e;
+  font-weight: bold;
+}

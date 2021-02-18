@@ -2,16 +2,21 @@ import React, { useRef, Suspense } from 'react';
 import './App.scss';
 //Components
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import { Section } from './components/section';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useHistory } from 'react-router-dom';
 
 // R3F
 import { Canvas, useFrame } from 'react-three-fiber';
 import { Html, useGLTFLoader } from 'drei';
 import Header from './components/header';
+import About from './components/About';
+import Products from './components/Products';
+import How from './components/How';
+import Contact from './components/Contact';
 
 function Model({ url }) {
   const gltf = useGLTFLoader('/pillow.gltf', true);
@@ -56,7 +61,8 @@ const HTMLContent = () => {
         <Html prepend fullscreen>
           <div className="container">
             <h1 className="title">Poduchy Anuchy</h1>
-            <button>Zamów teraz</button>
+
+            <button href="#products">Zamów teraz</button>
           </div>
         </Html>
       </group>
@@ -67,22 +73,39 @@ const HTMLContent = () => {
 export default function App() {
   return (
     <>
-      {/* <Router> */}
-      <Header />
-      {/* R3F Canvas */}
-      {/* <Switch> */}
-      <Canvas
-        concurrent
-        colorManagement
-        camera={{ position: [0, 0, 10], fov: 70 }}>
-        {/* Lights Component */}
-        <Lights />
-        <Suspense fallback={null}>
-          <HTMLContent />
-        </Suspense>
-      </Canvas>
-      {/* </Switch>
-      </Router> */}
+      <Router>
+        <Header />
+        <Switch>
+          <Route path="/o_mnie">
+            <About />
+          </Route>
+
+          <Route path="/produkty">
+            <Products />
+          </Route>
+
+          <Route path="/jak_zamowic">
+            <How />
+          </Route>
+
+          <Route path="/kontakt">
+            <Contact />
+          </Route>
+
+          <Route path="/">
+            <Canvas
+              concurrent
+              colorManagement
+              camera={{ position: [0, 0, 10], fov: 70 }}>
+              {/* Lights Component */}
+              <Lights />
+              <Suspense fallback={null}>
+                <HTMLContent />
+              </Suspense>
+            </Canvas>
+          </Route>
+        </Switch>
+      </Router>
     </>
   );
 }
