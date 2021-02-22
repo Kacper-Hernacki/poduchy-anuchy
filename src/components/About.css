@@ -9,7 +9,7 @@
 }
 
 .about .about__container {
-  margin-top: 50px;
+  margin-top: 30px;
   display: flex;
 }
 
@@ -38,4 +38,10 @@
   font-size: 20px;
   color: #572e2e;
   font-weight: bold;
+}
+
+.about .about__container .about__right .about__rightContact {
+  font-size: 20px;
+  color: #ffffff;
+  text-shadow: 1.49px 1.49px #572e2e;
 }

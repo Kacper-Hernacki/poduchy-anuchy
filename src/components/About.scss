@@ -9,7 +9,7 @@
     margin-top: 30px;
   }
   .about__container {
-    margin-top: 50px;
+    margin-top: 30px;
     display: flex;
     .about__left {
       flex: 0.5;
@@ -35,6 +35,32 @@
         color: #572e2e;
         // text-shadow: 0.5px 0.5px #431f1f;
         font-weight: bold;
+      }
+
+      .about__rightContact {
+        font-size: 20px;
+        color: #ffffff;
+        text-shadow: 1.49px 1.49px #572e2e;
+      }
+
+      button {
+        font-family: 'Courgette', cursive;
+        cursor: pointer;
+        outline: none;
+        border: 4px solid #572e2e;
+        font-size: 15px;
+        font-weight: bold;
+        color: #572e2e;
+        background-color: transparent;
+        margin-top: 20px;
+        padding: 5px 20px;
+        margin-left: 220px;
+      }
+      button:hover {
+        color: #fff;
+        background-color: #572e2e6b;
+
+        transition: 200ms;
       }
     }
   }

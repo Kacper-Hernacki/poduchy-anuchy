@@ -14,15 +14,17 @@ function About() {
         <div className="about__right">
           <p>Robótki na drutach towarzyszą mi od dzieciństwa.</p>
           <p>
-            Dziergała moja prababcia, potem babcia, mama i teraz to moja kolej,
-            by kontynuować tą tradycję, dziedzictwo. Dzierganie przerodziło się
-            w pasję. Z tej pasji powstały oferowane produkty i wciąż powstają
-            nowe.
+            Dziergała moja prababcia, potem babcia, mama i&nbsp;teraz to moja
+            kolej, by kontynuować tą tradycję, dziedzictwo. Dzierganie
+            przerodziło się w pasję. Z tej pasji powstały oferowane produkty
+            i&nbsp;wciąż powstają nowe.
           </p>
-          <p>
+          <p className="about__rightContact">
             Jeśli masz jakiś pomysł na wyrób dziergany - napisz, wykreuję go z
             wełny lub sznurka specjalnie dla Ciebie.
           </p>
+
+          <button href="#products">Napisz teraz</button>
         </div>
       </div>
     </div>
