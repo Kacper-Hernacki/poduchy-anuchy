@@ -17,6 +17,7 @@ import About from './components/About';
 import Products from './components/Products';
 import How from './components/How';
 import Contact from './components/Contact';
+import Gallery from './components/Gallery';
 
 function Model({ url }) {
   const gltf = useGLTFLoader('/pillow.gltf', true);
@@ -90,6 +91,10 @@ export default function App() {
 
           <Route path="/kontakt">
             <Contact />
+          </Route>
+
+          <Route path="/galeria">
+            <Gallery />
           </Route>
 
           <Route path="/">

@@ -42,6 +42,11 @@ export default function Header() {
               Jak Zamówić
             </Nav.Link>
           </LinkContainer>
+          <LinkContainer to="/galeria">
+            <Nav.Link className="navbar__link" href="#link">
+              Galeria
+            </Nav.Link>
+          </LinkContainer>
           <LinkContainer to="/kontakt">
             <Nav.Link className="navbar__link" href="#link">
               Kontakt

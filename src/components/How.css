@@ -1,4 +1,13 @@
-.how h1 {
+.how {
+  background-color: rgba(0, 0, 0, 0.138);
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+.how h2 {
+  text-align: center;
   font-family: 'Dancing Script', cursive;
   color: #ffffff !important;
   text-shadow: 3.45px 3.45px #572e2e;
@@ -8,10 +17,20 @@
   margin-top: 30px;
 }
 
+.how h1 {
+  font-family: 'Dancing Script', cursive;
+  color: #ffffff !important;
+  text-shadow: 3.45px 3.45px #572e2e;
+  font-weight: bold !important;
+  font-size: 75px;
+  text-align: center;
+  margin-top: 10px;
+}
+
 .how .how__container {
   display: flex;
   justify-content: center;
-  padding-top: 100px;
+  padding-top: 20px;
 }
 
 .how .how__container .how__steps {

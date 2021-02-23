@@ -24,14 +24,24 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: auto;
 }
 
 html::-webkit-scrollbar {
   display: none;
 }
 
-html {
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#root ::-webkit-scrollbar {
+  display: none;
+}
+
+html,
+body,
+#root {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
