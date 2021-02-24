@@ -1,4 +1,4 @@
-import React, { useRef, Suspense } from 'react';
+import React, { useRef, Suspense, useState } from 'react';
 import './App.scss';
 //Components
 
@@ -18,6 +18,7 @@ import Products from './components/Products';
 import How from './components/How';
 import Contact from './components/Contact';
 import Gallery from './components/Gallery';
+import Modal from './components/Modal';
 
 function Model({ url }) {
   const gltf = useGLTFLoader('/pillow.gltf', true);
@@ -72,6 +73,7 @@ const HTMLContent = () => {
 };
 
 export default function App() {
+  const [selectedImg, setSelectedImg] = useState(null);
   return (
     <>
       <Router>
@@ -94,7 +96,13 @@ export default function App() {
           </Route>
 
           <Route path="/galeria">
-            <Gallery />
+            <Gallery setSelectedImg={setSelectedImg} />
+            {selectedImg && (
+              <Modal
+                selectedImg={selectedImg}
+                setSelectedImg={setSelectedImg}
+              />
+            )}
           </Route>
 
           <Route path="/">
