@@ -7,11 +7,16 @@
 }
 
 .navbar {
-  background-color: #b4c7cc00 !important;
+  background-color: #00000000 !important;
+  position: absolute;
+  top: 0;
+  z-index: 166111591;
+  width: 100%;
 }
 
-.navbar__link {font-family: 'Courgette', cursive;
-  
+.navbar__link {
+  font-family: 'Courgette', cursive;
+
   font-size: 18px;
   color: #572e2e !important;
   font-weight: bold !important;

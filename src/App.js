@@ -1,6 +1,7 @@
 import React, { useRef, Suspense, useState } from 'react';
 import './App.scss';
 //Components
+import CookieConsent from 'react-cookie-consent';
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
@@ -60,7 +61,7 @@ const HTMLContent = () => {
         <mesh ref={ref} position={[0, 0, 6]}>
           <Model />
         </mesh>
-        <Html prepend fullscreen>
+        <Html className="html__container" prepend fullscreen>
           <div className="container">
             <h1 className="title">Poduchy Anuchy</h1>
 
@@ -112,12 +113,35 @@ export default function App() {
               camera={{ position: [0, 0, 10], fov: 70 }}>
               {/* Lights Component */}
               <Lights />
-              <Suspense fallback={null}>
+              <Suspense className="suspense" fallback={null}>
                 <HTMLContent />
               </Suspense>
             </Canvas>
           </Route>
         </Switch>
+        <CookieConsent
+          expires={365}
+          buttonText="Ok, rozumiem!"
+          style={{
+            background: 'rgba(0,0,0,0.5)',
+            textAlign: 'left',
+            position: 'absolute',
+            zIndex: '166111591',
+            bottom: '0',
+            height: '200px',
+          }}
+          buttonStyle={{
+            color: '#572e2e',
+            background: 'white',
+            borderRadius: '10px',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+          }}
+          location="bottom"
+          debug={true}>
+          This site uses cookies. See our <a href="/">privacy policy</a> for
+          more
+        </CookieConsent>
       </Router>
     </>
   );

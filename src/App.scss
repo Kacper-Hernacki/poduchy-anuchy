@@ -48,18 +48,8 @@ body,
 
 Canvas {
   position: relative;
-}
 
-Canvas::after {
-  content: '';
-  display: block;
-  height: 100%;
-  width: 100%;
-  background-color: #b5d4dd;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0.6;
+  z-index: 10;
 }
 
 .scrollArea {
@@ -70,6 +60,11 @@ Canvas::after {
   height: 100vh;
   overflow: auto;
   overflow-x: hidden;
+  z-index: 10;
+}
+
+.suspense {
+  z-index: 10;
 }
 
 .container {
@@ -81,6 +76,8 @@ Canvas::after {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: relative;
+  z-index: 10;
 }
 
 .container > button {
@@ -94,6 +91,8 @@ Canvas::after {
   background-color: transparent;
   margin-top: 20px;
   padding: 5px 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .container > button:hover {
