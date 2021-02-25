@@ -1,3 +1,14 @@
+.how ::-webkit-scrollbar {
+  display: none;
+}
+
+.how {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
 .how {
   background-color: rgba(0, 0, 0, 0.138);
   margin-left: 5%;
@@ -5,6 +16,8 @@
   padding-bottom: 30px;
   padding-top: 30px;
   margin-top: 100px;
+  overflow-y: scroll;
+  height: 80%;
 }
 
 .how h2 {
