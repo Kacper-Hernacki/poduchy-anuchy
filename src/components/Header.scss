@@ -21,4 +21,14 @@
   color: #572e2e !important;
   font-weight: bold !important;
   padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.navbar__link:focus,
+.navbar__link:active,
+.navbar__link-icon:focus {
+  border: 0px solid #572e2e;
+  box-shadow: none;
+  border-radius: 20px;
+  background-color: #572e2e2a;
 }

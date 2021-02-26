@@ -64,8 +64,12 @@ const HTMLContent = () => {
         <Html className="html__container" prepend fullscreen>
           <div className="container">
             <h1 className="title">Poduchy Anuchy</h1>
+            {/* <Link to="/kontakt" component={Contact}> */}
+            <a href="/produkty">
+              <button href="/produkty">Zamów teraz</button>
+            </a>
 
-            <button href="#products">Zamów teraz</button>
+            {/* </Link> */}
           </div>
         </Html>
       </group>

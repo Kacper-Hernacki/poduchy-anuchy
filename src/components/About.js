@@ -1,6 +1,7 @@
 import React from 'react';
 import './About.scss';
-import pillow from '../images/BRł.png';
+import pillow from '../img/logo-lg.png';
+import { Link } from 'react-router-dom';
 
 function About() {
   return (
@@ -23,8 +24,9 @@ function About() {
             Jeśli masz jakiś pomysł na wyrób dziergany - napisz, wykreuję go z
             wełny lub sznurka specjalnie dla Ciebie.
           </p>
-
-          <button href="#products">Napisz teraz</button>
+          <Link to="/kontakt">
+            <button href="#products">Napisz teraz</button>
+          </Link>
         </div>
       </div>
     </div>

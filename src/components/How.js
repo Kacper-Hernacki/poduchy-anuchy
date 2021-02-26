@@ -4,6 +4,7 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 import BrushIcon from '@material-ui/icons/Brush';
+import CreditCardIcon from '@material-ui/icons/CreditCard';
 
 function How() {
   return (
@@ -22,6 +23,10 @@ function How() {
         <div className="how__steps">
           <HourglassEmptyIcon />
           <p>3. Czekaj na potwierdzenie</p>
+        </div>
+        <div className="how__steps">
+          <CreditCardIcon />
+          <p>4. Zrób przelew na podane konto</p>
         </div>
       </div>
       <h2>Lub</h2>

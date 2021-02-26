@@ -80,7 +80,7 @@ Canvas {
   z-index: 10;
 }
 
-.container > button {
+.container > a > button {
   font-family: 'Courgette', cursive;
   cursor: pointer;
   outline: none;
@@ -95,7 +95,7 @@ Canvas {
   z-index: 1;
 }
 
-.container > button:hover {
+.container > a > button:hover {
   color: #fff;
   background-color: #572e2e6b;
 
