@@ -9,8 +9,12 @@ import {
 } from 'react-bootstrap';
 import './Header.scss';
 import { LinkContainer } from 'react-router-bootstrap';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import { useStateValue } from '../StateProvider';
 
 export default function Header() {
+  const [{ basket }] = useStateValue();
+
   return (
     <Navbar className="navbar" bg="light" expand="lg">
       <LinkContainer to="/">
@@ -51,6 +55,13 @@ export default function Header() {
             <Nav.Link className="navbar__link" href="#link">
               Kontakt
             </Nav.Link>
+          </LinkContainer>
+
+          <LinkContainer to="/kosz">
+            <Navbar.Brand className="navbarBasket" href="#home">
+              <ShoppingBasketIcon />
+              <span className="basket__count">{basket?.length}</span>
+            </Navbar.Brand>
           </LinkContainer>
         </Nav>
       </Navbar.Collapse>

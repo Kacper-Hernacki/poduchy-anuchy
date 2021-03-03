@@ -20,6 +20,8 @@ import How from './components/How';
 import Contact from './components/Contact';
 import Gallery from './components/Gallery';
 import Modal from './components/Modal';
+import Payment from './components/Payment';
+import Checkout from './components/Checkout';
 
 function Model({ url }) {
   const gltf = useGLTFLoader('/pillow.gltf', true);
@@ -98,6 +100,14 @@ export default function App() {
 
           <Route path="/kontakt">
             <Contact />
+          </Route>
+
+          <Route path="/platnosc">
+            <Payment />
+          </Route>
+
+          <Route path="/kosz">
+            <Checkout />
           </Route>
 
           <Route path="/galeria">

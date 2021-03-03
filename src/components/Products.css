@@ -77,6 +77,21 @@
   padding-right: 70px;
 }
 
+.products .products__container .products__right .products__add {
+  font-family: 'Courgette', cursive;
+  cursor: pointer;
+  outline: none;
+  border: 4px solid #572e2e;
+  font-size: 20px;
+  font-weight: bold;
+  color: #572e2e;
+  background-color: transparent;
+  margin-top: 20px;
+  padding: 5px 20px;
+  position: relative;
+  z-index: 1;
+}
+
 .products .products__container .products__right .colors button {
   width: 30px;
   height: 30px;
