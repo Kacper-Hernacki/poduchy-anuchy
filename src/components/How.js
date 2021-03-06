@@ -5,11 +5,25 @@ import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 import BrushIcon from '@material-ui/icons/Brush';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import WebIcon from '@material-ui/icons/Web';
 
 function How() {
   return (
     <div className="how">
       <h1>Jak Zamówić?</h1>
+      <h2>I sposób</h2>
+      <div className="how__container">
+        <div className="how__steps">
+          <ShoppingBasketIcon />
+          <p>1. Dodaj produkt do koszyka</p>
+        </div>
+        <div className="how__steps">
+          <WebIcon />
+          <p>2. Wybierz spsób płatności na stronie</p>
+        </div>
+      </div>
+      <h2>II sposób</h2>
       <div className="how__container">
         {' '}
         <div className="how__steps">
@@ -29,7 +43,7 @@ function How() {
           <p>4. Zrób przelew na podane konto</p>
         </div>
       </div>
-      <h2>Lub</h2>
+      <h2>III sposób</h2>
       <div className="how__container">
         <div className="how__steps">
           <BrushIcon />

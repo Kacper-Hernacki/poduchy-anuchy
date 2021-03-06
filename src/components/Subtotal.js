@@ -9,6 +9,7 @@ function Subtotal() {
   return (
     <div className="subtotal">
       <CurrencyFormat
+        className="price"
         renderText={(value) => (
           <>
             <p>
@@ -20,7 +21,7 @@ function Subtotal() {
         value={getBasketTotal(basket)}
         displayType={'text'}
         thousandSeparator={true}
-        prefix={'$'}
+        prefix={'zł '}
       />
       <button>Przejdź do zapłaty</button>
     </div>

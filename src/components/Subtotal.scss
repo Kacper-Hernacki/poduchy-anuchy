@@ -1,13 +1,17 @@
 .subtotal {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 300px;
   height: 100px;
   padding: 20px;
   background-color: #00000025;
   border: 1px solid rgba(0, 0, 0, 0.357);
   border-radius: 3px;
+  padding-top: 20px;
+  p {
+    margin-top: 20px !important;
+  }
 }
 
 .subtotal > button {
