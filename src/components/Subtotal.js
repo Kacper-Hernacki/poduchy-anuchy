@@ -3,6 +3,7 @@ import './Subtotal.scss';
 import CurrencyFormat from 'react-currency-format';
 import { useStateValue } from '../StateProvider';
 import { getBasketTotal } from '../reducer';
+import { Link } from 'react-router-dom';
 
 function Subtotal() {
   const [{ basket }, dispatch] = useStateValue();
@@ -23,7 +24,10 @@ function Subtotal() {
         thousandSeparator={true}
         prefix={'zł '}
       />
-      <button>Przejdź do zapłaty</button>
+      <Link to="/platnosc">
+        {' '}
+        <button className="subtotal__button">Przejdź do zapłaty</button>
+      </Link>
     </div>
   );
 }
