@@ -1,3 +1,14 @@
+.payment ::-webkit-scrollbar {
+  display: none;
+}
+
+.payment {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
 .payment {
   background-color: rgba(0, 0, 0, 0.138);
   padding: 30px;
@@ -6,7 +17,8 @@
   padding-top: 0px;
   margin-top: 100px;
   height: 80%;
-  padding-top: 80px;
+  padding-top: 30px;
+  overflow-y: scroll;
 }
 
 .payment h1 {
@@ -17,11 +29,29 @@
   font-size: 75px;
   text-align: center;
   margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.payment .payment__container {
+  display: flex;
 }
 
 .payment .payment__container .payment__section {
+  font-family: 'Courgette', cursive;
   display: flex;
   flex-direction: column;
+  padding-left: 50px;
+}
+
+.payment .payment__container .payment__section button {
+  background-color: #377bbb;
+  border: 1px solid;
+  margin-top: 10px;
+  border-color: #377bbb;
+  color: black;
+  width: 100%;
+  margin-bottom: 20px !important;
+  border: none;
 }
 
 .payment .payment__container .payment__section .payment__title {

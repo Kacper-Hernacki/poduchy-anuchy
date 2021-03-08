@@ -1,3 +1,12 @@
+.contact ::-webkit-scrollbar {
+  display: none;
+}
+
+.contact {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 .contact {
   background-color: rgba(0, 0, 0, 0.138);
   padding: 30px;
@@ -7,6 +16,8 @@
   margin-top: 100px;
   height: 80%;
   padding-top: 80px;
+  padding-bottom: 80px;
+  overflow-y: scroll;
   h1 {
     font-family: 'Dancing Script', cursive;
     color: #ffffff !important;
@@ -65,6 +76,7 @@
       background-color: transparent;
       margin-top: 20px;
       padding: 5px 20px;
+      margin-bottom: 20px;
     }
 
     button:hover {

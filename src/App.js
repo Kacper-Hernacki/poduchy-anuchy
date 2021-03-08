@@ -22,6 +22,7 @@ import Gallery from './components/Gallery';
 import Modal from './components/Modal';
 import Payment from './components/Payment';
 import Checkout from './components/Checkout';
+import PaymentForm from './components/PaymentForm';
 
 function Model({ url }) {
   const gltf = useGLTFLoader('/pillow.gltf', true);
@@ -108,6 +109,10 @@ export default function App() {
 
           <Route path="/kosz">
             <Checkout />
+          </Route>
+
+          <Route path="/formularz">
+            <PaymentForm />
           </Route>
 
           <Route path="/galeria">

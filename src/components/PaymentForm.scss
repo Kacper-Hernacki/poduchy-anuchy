@@ -1,0 +1,30 @@
+.paymentForm ::-webkit-scrollbar {
+  display: none;
+}
+
+.paymentForm {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.paymentForm {
+  background-color: rgba(0, 0, 0, 0.138);
+  padding: 30px;
+  margin-right: 10%;
+  margin-left: 10%;
+  padding-top: 0px;
+  margin-top: 100px;
+  height: 80%;
+  padding-top: 30px;
+  overflow-y: scroll;
+  h1 {
+    font-family: 'Dancing Script', cursive;
+    color: #ffffff !important;
+    text-shadow: 3.45px 3.45px #572e2e;
+    font-weight: bold !important;
+    font-size: 75px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 50px;
+  }
+}

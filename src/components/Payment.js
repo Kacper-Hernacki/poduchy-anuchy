@@ -2,6 +2,7 @@ import React from 'react';
 import './Payment.scss';
 import { useStateValue } from '../StateProvider';
 import CheckoutProduct from './CheckoutProduct';
+import { Link } from 'react-router-dom';
 
 function Payment() {
   const [{ basket }] = useStateValue();
@@ -21,7 +22,12 @@ function Payment() {
             <input type="text" placeholder="Ulica" />
             <input type="text" placeholder="Kod pocztowy" />
             <input type="text" placeholder="Miasto" />
+            <input type="text" placeholder="Nr telefonu" />
           </div>
+          <Link to="/formularz">
+            {' '}
+            <button>Zapłać</button>
+          </Link>
         </div>
         <div className="payment__section">
           <h2>Przegląd przedmiotów</h2>
