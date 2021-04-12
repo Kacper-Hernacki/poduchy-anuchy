@@ -1,0 +1,1 @@
+.dashboard ::-webkit-scrollbar{display:none}.dashboard{-ms-overflow-style:none;scrollbar-width:none}.dashboard{background-color:#888;height:100%;display:flex;flex-direction:column;align-items:center;padding-top:100px;overflow-y:scroll}

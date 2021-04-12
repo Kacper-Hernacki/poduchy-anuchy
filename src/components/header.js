@@ -36,7 +36,7 @@ export default function Header() {
               O mnie
             </Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/produkty">
+          <LinkContainer to="/categories">
             <Nav.Link className="navbar__link" href="#link">
               Produkty
             </Nav.Link>

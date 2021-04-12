@@ -23,6 +23,7 @@ function Checkout() {
               title={item.title}
               image={item.image}
               price={item.price}
+              items={item.items}
             />
           ))}
         </div>

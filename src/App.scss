@@ -165,3 +165,30 @@ Canvas {
   top: 70%;
   left: 50%;
 }
+
+.button__products {
+  position: absolute;
+  top: 70%;
+  width: 170px;
+  height: 40px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10000000000000000;
+  font-family: 'Courgette', cursive;
+  cursor: pointer;
+  outline: none;
+  border: 4px solid #572e2e;
+  font-size: 20px;
+  font-weight: bold;
+  color: #572e2e;
+  background-color: transparent;
+}
+
+.button__products:hover {
+  background-color: #572e2e;
+  color: white;
+}

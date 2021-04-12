@@ -32,54 +32,56 @@ function Products() {
           setSelectedPillow(pillow6),
           setSelectedId(1),
           setSelectedTitle('Poduszka dziergana "Bordowa"'),
-          setSelectedPrice(99.99)
+          setSelectedPrice(199)
         );
       case 'blue':
         return (
           setSelectedPillow(pillow3),
           setSelectedId(2),
           setSelectedTitle('Poduszka dziergana "niebieska"'),
-          setSelectedPrice(99.99)
+          setSelectedPrice(99)
         );
       case 'beige':
         return (
           setSelectedPillow(pillow1),
           setSelectedId(3),
           setSelectedTitle('Poduszka dziergana "beżowa"'),
-          setSelectedPrice(99.99)
+          setSelectedPrice(99)
         );
       case 'black':
         return (
           setSelectedPillow(pillow2),
           setSelectedId(4),
           setSelectedTitle('Poduszka dziergana "czarna"'),
-          setSelectedPrice(99.99)
+          setSelectedPrice(99)
         );
       case 'green':
         return (
           setSelectedPillow(pillow4),
           setSelectedId(5),
           setSelectedTitle('Poduszka dziergana "zielona"'),
-          setSelectedPrice(99.99)
+          setSelectedPrice(99)
         );
       case 'grey':
         return (
           setSelectedPillow(pillow5),
           setSelectedId(6),
           setSelectedTitle('Poduszka dziergana "szara"'),
-          setSelectedPrice(99.99)
+          setSelectedPrice(99)
         );
       default:
         return (
           setSelectedPillow(pillow),
           setSelectedId(0),
           setSelectedTitle('Poduszka dziergana "biała"'),
-          setSelectedPrice(99.99)
+          setSelectedPrice(99)
         );
     }
   });
 
   const addToBasket = () => {
+
+    
     dispatch({
       type: 'ADD_TO_BASKET',
       item: {
@@ -101,7 +103,7 @@ function Products() {
       <div className="products__container">
         {' '}
         <div className="products__left">
-          <img src={selectedPillow} alt="" srcset="" />
+          <img src={selectedPillow} alt="" />
         </div>
         <div className="products__right">
           <h2>{selectedTitle}</h2>

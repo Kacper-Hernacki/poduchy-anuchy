@@ -1,4 +1,4 @@
-import React, { useRef, Suspense, useState } from 'react';
+import React, { useRef, Suspense, useState, useEffect } from 'react';
 import './App.scss';
 //Components
 import CookieConsent from 'react-cookie-consent';
@@ -8,8 +8,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { Section } from './components/section';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useHistory } from 'react-router-dom';
 
+import { LinkContainer } from 'react-router-bootstrap';
 // R3F
 import { Canvas, useFrame } from 'react-three-fiber';
 import { Html, useGLTFLoader } from 'drei';
@@ -23,6 +23,28 @@ import Modal from './components/Modal';
 import Payment from './components/Payment';
 import Checkout from './components/Checkout';
 import PaymentForm from './components/PaymentForm';
+
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import Order from './components/Order';
+import Cookies from './components/Cookies';
+import Regulamin from './components/Regulamin';
+import Categories from './components/Categories';
+
+import PillowCases from './productsPages/PillowCases';
+import Decoupage from './productsPages/Decoupage';
+import Pillows from './productsPages/Pillows';
+import Others from './productsPages/Others';
+import Login from './Login';
+import Dashboard from './Dashboard';
+import ProtectedRoute from './ProtectedRoute';
+import { useStateValue } from './StateProvider';
+import { auth, db, firebase } from './firebase';
+import ErrorPage from './ErrorPage';
+
+const promise = loadStripe(
+  'pk_test_51IQb0cLJT82lIrq7JolLUbJl7TcOBFtBiwrVexF6ToaHcSjeCrnn4zpkF3OjSjWSMQUxISBx4uGCXIeyu1ycAvRK00ze0Ot7Ng'
+);
 
 function Model({ url }) {
   const gltf = useGLTFLoader('/pillow.gltf', true);
@@ -67,12 +89,6 @@ const HTMLContent = () => {
         <Html className="html__container" prepend fullscreen>
           <div className="container">
             <h1 className="title">Poduchy Anuchy</h1>
-            {/* <Link to="/kontakt" component={Contact}> */}
-            <a href="/produkty">
-              <button href="/produkty">Zamów teraz</button>
-            </a>
-
-            {/* </Link> */}
           </div>
         </Html>
       </group>
@@ -81,11 +97,119 @@ const HTMLContent = () => {
 };
 
 export default function App() {
+  const [{ user, basket }, dispatch] = useStateValue();
+  const [anonymousUser, setAnonymousUser] = useState(null);
   const [selectedImg, setSelectedImg] = useState(null);
+  const [pageRefreshed, setPageRefreshed] = useState(null);
+  const [startReturning, setStartReturning] = useState(null);
+  const [basketUserId, setBasketUserId] = useState(null);
+  const [basketProducts, setBasketProducts] = useState(null);
+
+  // checking if user is logged, if no there is anonymous login
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      // add isAnonymous function !!!
+      if (authUser) {
+        setBasketUserId(authUser.uid);
+        dispatch({
+          type: 'SET_USER',
+          user: authUser,
+        });
+      } else {
+        auth.signInAnonymously().catch((e) => alert());
+        setAnonymousUser(true);
+        if (anonymousUser) {
+          auth.onAuthStateChanged((firebaseUser) => {
+            setBasketUserId(firebaseUser.uid);
+          });
+        }
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  // REFRESH DETECTION
+
+  useEffect(() => {
+    window.onbeforeunload = function () {
+      return setPageRefreshed(true);
+    };
+    return () => {
+      window.onbeforeunload = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (basket?.length !== 0 && pageRefreshed === true) {
+      setStartReturning(true);
+    }
+  }, [pageRefreshed, basket]);
+
+  ///START EMPTYING BASKET AND ADD IT TO PRODUCTS!!
+
+  useEffect(() => {
+    db.collection('basket')
+      .doc('8RMPD6Q2f36iOvpJWEjP')
+      .collection('users')
+      .doc(`${basketUserId}`)
+      .collection('decoupage')
+      // .doc('AwMDPNGBZeH3gXgUS8YR')
+      .onSnapshot((snapshot) =>
+        setBasketProducts(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+
+    console.table(basketProducts);
+
+    if (startReturning === true) {
+      db.collection('products')
+        .doc('xVN6XLNCssO15UaMb8IymQ2f1as2')
+        .collection('decoupage')
+        .doc('AwMDPNGBZeH3gXgUS8YR')
+        .update({
+          amount: firebase.firestore.FieldValue.increment(
+            basketProducts.length
+          ),
+        });
+
+      db.collection('basket')
+        .doc('8RMPD6Q2f36iOvpJWEjP')
+        .collection('users')
+        .doc(`${basketUserId}`)
+        .collection('decoupage')
+        .get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+            doc.ref.delete();
+          });
+        });
+    }
+  }, [startReturning, basketUserId, basketProducts]);
+
+  //////////////////////////////////
+
   return (
     <>
       <Router>
-        <Header />
+        {' '}
+        {(() => {
+          switch (window.location.pathname) {
+            case '/admin':
+              return null;
+            case '/adminDashboard':
+              return null;
+
+            default:
+              return <Header />;
+          }
+        })()}
         <Switch>
           <Route path="/o_mnie">
             <About />
@@ -93,6 +217,10 @@ export default function App() {
 
           <Route path="/produkty">
             <Products />
+          </Route>
+
+          <Route path="/categories">
+            <Categories />
           </Route>
 
           <Route path="/jak_zamowic">
@@ -111,8 +239,45 @@ export default function App() {
             <Checkout />
           </Route>
 
-          <Route path="/formularz">
-            <PaymentForm />
+          <Route path="/order">
+            <Order />
+          </Route>
+
+          <Route path="/cookies">
+            <Cookies />
+          </Route>
+
+          <Route path="/regulamin">
+            <Regulamin />
+          </Route>
+
+          <Route path="/products/pillowcases">
+            <PillowCases />
+          </Route>
+
+          <Route path="/products/decoupage">
+            <Decoupage />
+          </Route>
+
+          <Route path="/products/others">
+            <Others />
+          </Route>
+
+          <Route path="/products/pillows">
+            <Pillows />
+          </Route>
+
+          <Route path="/admin">
+            <Login />
+          </Route>
+
+          <ProtectedRoute exact path="/adminDashboard" component={Dashboard} />
+
+          <Route path="/payment">
+            <Elements stripe={promise}>
+              {' '}
+              <PaymentForm />
+            </Elements>
           </Route>
 
           <Route path="/galeria">
@@ -124,7 +289,7 @@ export default function App() {
               />
             )}
           </Route>
-
+          {/* <Route path="*" component={ErrorPage} /> */}
           <Route path="/">
             <Canvas
               concurrent
@@ -136,6 +301,11 @@ export default function App() {
                 <HTMLContent />
               </Suspense>
             </Canvas>
+            <Link to="/categories">
+              <button className="button__products" href="/produkty">
+                Zamów teraz
+              </button>
+            </Link>
           </Route>
         </Switch>
         <CookieConsent
@@ -148,6 +318,8 @@ export default function App() {
             zIndex: '166111591',
             bottom: '0',
             height: '200px',
+            fontFamily: 'Courgette',
+            fontSize: '20px',
           }}
           buttonStyle={{
             color: '#572e2e',
@@ -158,10 +330,14 @@ export default function App() {
           }}
           location="bottom"
           debug={true}>
-          This site uses cookies. See our <a href="/">privacy policy</a> for
-          more
+          Ta strona używa plików cookies. Zobacz naszą{' '}
+          <LinkContainer to="/cookies">
+            <a href="/cookies">politykę prywatności</a>
+          </LinkContainer>{' '}
+          , żeby dowiedzieć się więcej.
         </CookieConsent>
       </Router>
+      <Router></Router>
     </>
   );
 }

@@ -24,7 +24,7 @@ function Payment() {
             <input type="text" placeholder="Miasto" />
             <input type="text" placeholder="Nr telefonu" />
           </div>
-          <Link to="/formularz">
+          <Link to="/payment">
             {' '}
             <button>Zapłać</button>
           </Link>

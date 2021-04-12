@@ -1,0 +1,18 @@
+.dashboard ::-webkit-scrollbar {
+  display: none;
+}
+
+.dashboard {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.dashboard {
+  background-color: rgb(136, 136, 136);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+  overflow-y: scroll;
+}
