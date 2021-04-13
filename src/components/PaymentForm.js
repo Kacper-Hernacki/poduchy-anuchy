@@ -7,9 +7,11 @@ import { getBasketTotal } from '../reducer';
 import { useStateValue } from '../StateProvider';
 import axios from './axios';
 import { useHistory } from 'react-router-dom';
+import { db, firebase } from '../firebase';
+import { getDefaultNormalizer } from '@testing-library/dom';
 
 function PaymentForm() {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket, order }, dispatch] = useStateValue();
 
   const history = useHistory();
 
@@ -23,6 +25,8 @@ function PaymentForm() {
   const [disabled, setDisabled] = useState(true);
 
   const [clientSecret, setClientSecret] = useState(true);
+
+  const [product, setProduct] = useState(null);
 
   useEffect(() => {
     // generate stripe secret to charge a customer
@@ -50,11 +54,40 @@ function PaymentForm() {
       })
       .then(({ paymentIntent }) => {
         // paymentIntent = payment confirmation
+
         setSucceeded(true);
         setError(null);
         setProcessing(false);
 
+        basket.forEach((product) => {
+          dispatch({
+            type: 'ADD_TO_ORDER',
+            item: {
+              id: product.id,
+              title: product.title,
+              image: product.image,
+              price: parseInt(product.price),
+              description: product.description,
+              collection: product.collectionId,
+            },
+          });
+        });
+
         history.replace('/order');
+
+        console.table(basket);
+
+        // deleting bought products
+
+        basket.forEach((item) => {
+          db.collection('products')
+            .doc('xVN6XLNCssO15UaMb8IymQ2f1as2')
+            .collection(`${item.collection}`)
+            .doc(item.id)
+            .update({
+              amount: firebase.firestore.FieldValue.increment(-1),
+            });
+        });
 
         dispatch({
           type: 'EMPTY_BASKET',

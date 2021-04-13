@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useStateValue } from '../StateProvider';
-import { db, auth } from '../firebase';
+import { db } from '../firebase';
 import Product from '../components/Product';
 import './Decoupage.scss';
 
 function Decoupage() {
   const [{ basket }] = useStateValue();
   const [product, setProduct] = useState(null);
-
 
   useEffect(() => {
     db.collection('products')

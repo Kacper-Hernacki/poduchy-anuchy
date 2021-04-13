@@ -32,6 +32,9 @@ function Pillows() {
           title={data.caption}
           image={data.imageUrl}
           description={data.description}
+          price={data.price}
+          amount={data.amount}
+          collectionId="poduszki"
         />
       ))}
     </div>

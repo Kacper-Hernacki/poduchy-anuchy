@@ -36,6 +36,7 @@ function PillowCases() {
           description={data.description}
           amount={data.amount}
           price={data.price}
+          collectionId="poszewki"
         />
       ))}
     </div>

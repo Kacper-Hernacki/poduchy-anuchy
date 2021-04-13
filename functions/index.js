@@ -27,6 +27,7 @@ app.post('/payments/create', async (request, response) => {
   const paymentIntent = await stripe.paymentIntents.create({
     amount: total,
     currency: 'pln',
+    receipt_email: 'hernackikacper@gmail.com',
   });
 
   console.log('BACKEND client secret is', paymentIntent.client_secret);

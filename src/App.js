@@ -98,31 +98,22 @@ const HTMLContent = () => {
 
 export default function App() {
   const [{ user, basket }, dispatch] = useStateValue();
-  const [anonymousUser, setAnonymousUser] = useState(null);
   const [selectedImg, setSelectedImg] = useState(null);
-  const [pageRefreshed, setPageRefreshed] = useState(null);
-  const [startReturning, setStartReturning] = useState(null);
-  const [basketUserId, setBasketUserId] = useState(null);
-  const [basketProducts, setBasketProducts] = useState(null);
-
-  // checking if user is logged, if no there is anonymous login
+  
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       // add isAnonymous function !!!
       if (authUser) {
-        setBasketUserId(authUser.uid);
         dispatch({
           type: 'SET_USER',
           user: authUser,
         });
       } else {
-        auth.signInAnonymously().catch((e) => alert());
-        setAnonymousUser(true);
-        if (anonymousUser) {
-          auth.onAuthStateChanged((firebaseUser) => {
-            setBasketUserId(firebaseUser.uid);
-          });
-        }
+        dispatch({
+          type: 'SET_USER',
+          user: null,
+        });
+   
       }
     });
 
@@ -131,69 +122,22 @@ export default function App() {
     };
   }, []);
 
-  // REFRESH DETECTION
+  
 
-  useEffect(() => {
-    window.onbeforeunload = function () {
-      return setPageRefreshed(true);
-    };
-    return () => {
-      window.onbeforeunload = null;
-    };
-  }, []);
 
-  useEffect(() => {
-    if (basket?.length !== 0 && pageRefreshed === true) {
-      setStartReturning(true);
-    }
-  }, [pageRefreshed, basket]);
-
-  ///START EMPTYING BASKET AND ADD IT TO PRODUCTS!!
-
-  useEffect(() => {
-    db.collection('basket')
-      .doc('8RMPD6Q2f36iOvpJWEjP')
-      .collection('users')
-      .doc(`${basketUserId}`)
-      .collection('decoupage')
-      // .doc('AwMDPNGBZeH3gXgUS8YR')
-      .onSnapshot((snapshot) =>
-        setBasketProducts(
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            data: doc.data(),
-          }))
-        )
-      );
-
-    console.table(basketProducts);
-
-    if (startReturning === true) {
-      db.collection('products')
-        .doc('xVN6XLNCssO15UaMb8IymQ2f1as2')
-        .collection('decoupage')
-        .doc('AwMDPNGBZeH3gXgUS8YR')
-        .update({
-          amount: firebase.firestore.FieldValue.increment(
-            basketProducts.length
-          ),
-        });
-
-      db.collection('basket')
-        .doc('8RMPD6Q2f36iOvpJWEjP')
-        .collection('users')
-        .doc(`${basketUserId}`)
-        .collection('decoupage')
-        .get()
-        .then(function (querySnapshot) {
-          querySnapshot.forEach(function (doc) {
-            doc.ref.delete();
-          });
-        });
-    }
-  }, [startReturning, basketUserId, basketProducts]);
-
-  //////////////////////////////////
+  //     db.collection('basket')
+  //       .doc('8RMPD6Q2f36iOvpJWEjP')
+  //       .collection('users')
+  //       .doc(`${basketUserId}`)
+  //       .collection('decoupage')
+  //       .get()
+  //       .then(function (querySnapshot) {
+  //         querySnapshot.forEach(function (doc) {
+  //           doc.ref.delete();
+  //         });
+  //       });
+  //   }
+ 
 
   return (
     <>

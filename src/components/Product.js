@@ -13,14 +13,28 @@ function Product({
   amount,
   collectionId,
 }) {
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user, basket }, dispatch] = useStateValue();
   const [added, setAdded] = useState(false);
-  const [numberOfItems, setNumberOfItems] = useState(amount);
+  const [numberOfItems, setNumberOfItems] = useState(parseInt(amount));
+  const [basketProduct, setBasketProduct] = useState(0);
+
+  useEffect(() => {
+    const list = [];
+    basket.forEach((item) => {
+      if (item.id === id) {
+        list.push(item.id);
+
+        setNumberOfItems(parseInt(amount) - list.length);
+      }
+    });
+
+    console.table(list);
+  }, [basket, id, amount]);
 
   const addToBasket = () => {
-    if (numberOfItems > 0 && user.uid) {
-      setNumberOfItems(amount - 1);
-      console.log('adddd permission');
+    setAdded(true);
+
+    if (numberOfItems > 0) {
       dispatch({
         type: 'ADD_TO_BASKET',
         item: {
@@ -29,32 +43,9 @@ function Product({
           image: image,
           price: parseInt(price),
           description: description,
-          user: user.uid,
           collection: collectionId,
-          // items: parseInt(items),
         },
       });
-      setAdded(true);
-
-      db.collection('products')
-        .doc('xVN6XLNCssO15UaMb8IymQ2f1as2')
-        .collection(`${collectionId}`)
-        .doc(id)
-        .update({
-          amount: amount - 1,
-        });
-
-      db.collection('basket')
-        .doc('8RMPD6Q2f36iOvpJWEjP')
-        .collection('users')
-        .doc(user.uid)
-        .collection(`${collectionId}`)
-        .add({
-          caption: title,
-          id: id,
-          price: price,
-          amount: 1,
-        });
     }
   };
 
@@ -67,7 +58,7 @@ function Product({
       <div className="product__right">
         <h2>{title}</h2>
         <h3>{description}</h3>
-        <p>Ilość sztuk dostępnych sztuk: {amount}</p>
+        <p>Ilość sztuk dostępnych sztuk: {numberOfItems}</p>
         <div className="product__price">
           <h2>Cena: {price} zł</h2>
         </div>

@@ -1,5 +1,6 @@
 export const initialState = {
   basket: [],
+  order: [],
   user: null,
 };
 
@@ -19,6 +20,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         basket: [...state.basket, action.item],
+      };
+    case 'ADD_TO_ORDER':
+      //logic for adding basket items to order
+      return {
+        ...state,
+        order: [...state.order, action.item],
       };
     case 'EMPTY_BASKET':
       return {

@@ -34,6 +34,7 @@ function Others() {
           description={data.description}
           amount={data.amount}
           price={data.price}
+          collectionId="koszyczki"
         />
       ))}
     </div>
