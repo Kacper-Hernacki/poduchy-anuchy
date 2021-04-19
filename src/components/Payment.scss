@@ -28,44 +28,31 @@
     margin-bottom: 50px;
   }
 
-  .payment__container {
+  .payment__containerButtons {
     display: flex;
-    .payment__section {
+    justify-content: space-evenly;
+    button {
+      background-color: #b8b8b8;
+      border: 1px solid;
+      margin-top: 10px;
+      border-color: #377bbb;
+      color: black;
+      width: 400px;
+      margin-bottom: 20px !important;
+      height: 100px;
+      border: none;
+      border-radius: 20px;
+      font-size: 30px;
       font-family: 'Courgette', cursive;
-      display: flex;
-      flex-direction: column;
-      padding-left: 50px;
-      button {
-        background-color: #377bbb;
-        border: 1px solid;
-        margin-top: 10px;
-        border-color: #377bbb;
-        color: black;
-        width: 100%;
-        margin-bottom: 20px !important;
-        border: none;
+      color: rgb(33, 31, 31);
+      .MuiSvgIcon-root {
+        color: rgb(39, 39, 39);
+        font-size: 50px;
+        margin-right: 30px;
       }
-      .payment__title {
-        font-family: 'Courgette', cursive;
-        h2 {
-          padding-left: 100px;
-        }
-      }
-      .payment__address {
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-        input {
-          width: 400px;
-          border-radius: 10px;
-          padding: 3px;
-          background-color: rgb(220, 220, 228);
-          font-weight: 600;
-          padding-left: 10px;
-          color: #2e2c2c;
-          margin-bottom: 10px;
-        }
-      }
+    }
+
+    button:hover {
     }
   }
 }

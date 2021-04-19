@@ -21,7 +21,7 @@ function Login() {
   return (
     <div className="login">
       <div className="login__container">
-        <h1>Sign In</h1>
+        <h1>Zaloguj się</h1>
         <form>
           <h5>E-mail</h5>
           <input

@@ -1,0 +1,82 @@
+.editProduct {
+  margin-top: 30px;
+  display: flex;
+
+  margin-left: 5%;
+  margin-right: 5%;
+
+  border-bottom: 1px solid rgba(82, 76, 76, 0.508);
+
+  .editProduct__left {
+    flex: 0.5;
+    display: grid;
+    justify-content: center;
+    img {
+      object-fit: contain;
+      width: 400px !important;
+      padding: 50px;
+    }
+  }
+
+  .editProduct__right {
+    flex: 0.5;
+    padding: 50px;
+    padding-right: 70px;
+    display: flex;
+    flex-direction: column;
+
+    input[type='number']::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    input[type='number'] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
+    input {
+      margin-top: 20px;
+    }
+
+    h2 {
+      font-family: 'Courgette', cursive;
+      font-size: 30px;
+      color: #572e2e;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    h3 {
+      font-family: 'Courgette', cursive;
+      color: #572e2e;
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    p {
+      font-family: 'Courgette', cursive;
+      color: #572e2e;
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  }
+
+  .editProduct__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .MuiSvgIcon-root {
+      font-size: 60px;
+      color: rgba(46, 102, 161, 0.994);
+    }
+
+    .deleteIcon {
+      color: rgb(177, 79, 79) !important;
+    }
+
+    .saveIcon {
+      color: rgb(49, 158, 111) !important;
+    }
+  }
+}

@@ -41,6 +41,7 @@ import ProtectedRoute from './ProtectedRoute';
 import { useStateValue } from './StateProvider';
 import { auth, db, firebase } from './firebase';
 import ErrorPage from './ErrorPage';
+import PaymentAtReceive from './components/PaymentAtReceive';
 
 const promise = loadStripe(
   'pk_test_51IQb0cLJT82lIrq7JolLUbJl7TcOBFtBiwrVexF6ToaHcSjeCrnn4zpkF3OjSjWSMQUxISBx4uGCXIeyu1ycAvRK00ze0Ot7Ng'
@@ -99,7 +100,7 @@ const HTMLContent = () => {
 export default function App() {
   const [{ user, basket }, dispatch] = useStateValue();
   const [selectedImg, setSelectedImg] = useState(null);
-  
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       // add isAnonymous function !!!
@@ -113,7 +114,6 @@ export default function App() {
           type: 'SET_USER',
           user: null,
         });
-   
       }
     });
 
@@ -121,23 +121,6 @@ export default function App() {
       unsubscribe();
     };
   }, []);
-
-  
-
-
-  //     db.collection('basket')
-  //       .doc('8RMPD6Q2f36iOvpJWEjP')
-  //       .collection('users')
-  //       .doc(`${basketUserId}`)
-  //       .collection('decoupage')
-  //       .get()
-  //       .then(function (querySnapshot) {
-  //         querySnapshot.forEach(function (doc) {
-  //           doc.ref.delete();
-  //         });
-  //       });
-  //   }
- 
 
   return (
     <>
@@ -211,6 +194,10 @@ export default function App() {
             <Pillows />
           </Route>
 
+          <Route path="/paymentAtReceive">
+            <PaymentAtReceive />
+          </Route>
+
           <Route path="/admin">
             <Login />
           </Route>
@@ -259,7 +246,7 @@ export default function App() {
             background: 'rgba(0,0,0,0.5)',
             textAlign: 'left',
             position: 'absolute',
-            zIndex: '166111591',
+            zIndex: '166111591100000',
             bottom: '0',
             height: '200px',
             fontFamily: 'Courgette',

@@ -2,6 +2,7 @@ import React from 'react';
 import './Order.scss';
 import { useStateValue } from '../StateProvider';
 import CheckoutProduct from './CheckoutProduct';
+import { Link } from 'react-router-dom';
 function Order() {
   const [{ basket, order }] = useStateValue();
 
@@ -17,9 +18,13 @@ function Order() {
             title={item.title}
             image={item.image}
             price={item.price}
+            buttonFalse={false}
           />
         ))}
       </div>
+      <Link to="/">
+        <button>Wróć do strony głównej</button>
+      </Link>
     </div>
   );
 }

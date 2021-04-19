@@ -1,9 +1,10 @@
 import React from 'react';
+import './Denied.scss';
 
 function Denied() {
   return (
-    <div>
-      <h1>Access Denied</h1>
+    <div className="denied">
+      <h1>Dostęp odrzucony</h1>
     </div>
   );
 }

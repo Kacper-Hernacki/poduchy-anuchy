@@ -13,10 +13,9 @@ function Product({
   amount,
   collectionId,
 }) {
-  const [{ user, basket }, dispatch] = useStateValue();
+  const [{ basket }, dispatch] = useStateValue();
   const [added, setAdded] = useState(false);
   const [numberOfItems, setNumberOfItems] = useState(parseInt(amount));
-  const [basketProduct, setBasketProduct] = useState(0);
 
   useEffect(() => {
     const list = [];
@@ -31,8 +30,14 @@ function Product({
     console.table(list);
   }, [basket, id, amount]);
 
+  const setTimeForDiv = () => {
+    setAdded(false);
+  };
+
   const addToBasket = () => {
     setAdded(true);
+
+    setTimeout(setTimeForDiv, 3000);
 
     if (numberOfItems > 0) {
       dispatch({

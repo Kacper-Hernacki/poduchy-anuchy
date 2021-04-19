@@ -3,6 +3,8 @@ import './Payment.scss';
 import { useStateValue } from '../StateProvider';
 import CheckoutProduct from './CheckoutProduct';
 import { Link } from 'react-router-dom';
+import CreditCardIcon from '@material-ui/icons/CreditCard';
+import MarkunreadMailboxIcon from '@material-ui/icons/MarkunreadMailbox';
 
 function Payment() {
   const [{ basket }] = useStateValue();
@@ -10,38 +12,21 @@ function Payment() {
   return (
     <div className="payment">
       <h1>Zamówienie</h1>
-      <div className="payment__container">
-        <div className="payment__section">
-          <div className="payment__title">
-            <h2>Adres dostawy</h2>
-          </div>
-          <div className="payment__address">
-            <input type="text" placeholder="Imię" />
-            <input type="text" placeholder="Nazwisko" />
-            <input type="email" placeholder="e-mail" />
-            <input type="text" placeholder="Ulica" />
-            <input type="text" placeholder="Kod pocztowy" />
-            <input type="text" placeholder="Miasto" />
-            <input type="text" placeholder="Nr telefonu" />
-          </div>
-          <Link to="/payment">
-            {' '}
-            <button>Zapłać</button>
-          </Link>
-        </div>
-        <div className="payment__section">
-          <h2>Przegląd przedmiotów</h2>
-          <div className="payment__itemz">
-            {basket.map((item) => (
-              <CheckoutProduct
-                id={item.id}
-                title={item.title}
-                image={item.image}
-                price={item.price}
-              />
-            ))}
-          </div>
-        </div>
+      <div className="payment__containerButtons">
+        {' '}
+        <Link to="/paymentAtReceive">
+          {' '}
+          <button>
+            <MarkunreadMailboxIcon />
+            Zapłać przy odbiorze
+          </button>
+        </Link>
+        <Link to="/payment">
+          <button>
+            <CreditCardIcon />
+            Zapłać teraz kartą
+          </button>
+        </Link>
       </div>
     </div>
   );

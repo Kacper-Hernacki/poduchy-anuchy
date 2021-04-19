@@ -1,0 +1,11 @@
+.denied {
+  background-color: rgb(221, 215, 215);
+  height: 100vh;
+  display: grid;
+  place-items: center;
+
+  h1 {
+    font-size: 50px;
+    font-family: 'Courgette', cursive;
+  }
+}
