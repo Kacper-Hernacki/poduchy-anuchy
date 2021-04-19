@@ -50,23 +50,19 @@ function PaymentForm() {
     getClientSecret();
   }, [basket]);
 
-  const card_element_options = {
+  const CARD_ELEMENT_OPTIONS = {
     style: {
       base: {
-        paddingLeft: '12px',
-        height: '80px',
-        width: '80% !important',
-        color: '#32325d',
-        marginTop: '40px',
-        fontSize: '36px',
-        backgroundColor: 'rgb(220, 220, 228)',
-        border: '1px solid #2c2c2c',
-        borderRadius: '20px',
+        color: '#313b3f',
         fontFamily: 'Courgette, cursive',
+        height: '30px',
+        fontSize: '16px',
         '::placeholder': {
-          color: '#2e2c2c',
-          fontSize: '26px',
+          color: '#aab7c4',
         },
+      },
+      invalid: {
+        iconColor: '#fa755a',
       },
     },
   };
@@ -74,72 +70,61 @@ function PaymentForm() {
   console.log('the secret is >>>>>', clientSecret);
 
   const handleSubmit = async (event) => {
-    if (
-      name &&
-      lastName &&
-      mail &&
-      street &&
-      zipCode &&
-      city &&
-      phoneNumber &&
-      basket
-    ) {
-      event.preventDefault();
-      setProcessing(true);
+    event.preventDefault();
+    setProcessing(true);
 
-      const payload = await stripe
-        .confirmCardPayment(clientSecret, {
-          payment_method: {
-            card: elements.getElement(CardElement),
-          },
-        })
-        .then(({ paymentIntent }) => {
-          // paymentIntent = payment confirmation
+    const payload = await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      })
+      .then(({ paymentIntent }) => {
+        // paymentIntent = payment confirmation
 
-          setSucceeded(true);
-          setError(null);
-          setProcessing(false);
+        setSucceeded(true);
+        setError(null);
+        setProcessing(false);
 
-          basket.forEach((product) => {
-            dispatch({
-              type: 'ADD_TO_ORDER',
-              item: {
-                id: product.id,
-                title: product.title,
-                image: product.image,
-                price: parseInt(product.price),
-                description: product.description,
-                collection: product.collectionId,
-              },
-            });
-          });
-
-          db.collection('bought').add({
-            products: basket,
-            data: [name, lastName, mail, street, zipCode, city, phoneNumber],
-          });
-
-          history.replace('/order');
-
-          console.table(basket);
-
-          // deleting bought products
-
-          basket.forEach((item) => {
-            db.collection('products')
-              .doc('xVN6XLNCssO15UaMb8IymQ2f1as2')
-              .collection(`${item.collection}`)
-              .doc(item.id)
-              .update({
-                amount: firebase.firestore.FieldValue.increment(-1),
-              });
-          });
-
+        basket.forEach((product) => {
           dispatch({
-            type: 'EMPTY_BASKET',
+            type: 'ADD_TO_ORDER',
+            item: {
+              id: product.id,
+              title: product.title,
+              image: product.image,
+              price: parseInt(product.price),
+              description: product.description,
+              collection: product.collectionId,
+            },
           });
         });
-    }
+
+        db.collection('bought').add({
+          products: basket,
+          data: [name, lastName, mail, street, zipCode, city, phoneNumber],
+        });
+
+        history.replace('/order');
+
+        console.table(basket);
+
+        // deleting bought products
+
+        basket.forEach((item) => {
+          db.collection('products')
+            .doc('xVN6XLNCssO15UaMb8IymQ2f1as2')
+            .collection(`${item.collection}`)
+            .doc(item.id)
+            .update({
+              amount: firebase.firestore.FieldValue.increment(-1),
+            });
+        });
+
+        dispatch({
+          type: 'EMPTY_BASKET',
+        });
+      });
   };
 
   const handleChange = (event) => {
@@ -149,8 +134,6 @@ function PaymentForm() {
 
   return (
     <div className="paymentForm">
-      <h1>Płatność</h1>
-
       <div className="payment__container">
         <div className="payment__section">
           <div className="payment__title">
@@ -158,52 +141,101 @@ function PaymentForm() {
           </div>
           <div className="payment__address">
             <input
+              className="input__paymentAddress"
               type="text"
               placeholder="Imię"
               onChange={(event) => setName(event.target.value)}
               value={name}
+              required
             />
             <input
+              className="input__paymentAddress"
               type="text"
               placeholder="Nazwisko"
               onChange={(event) => setLastName(event.target.value)}
               value={lastName}
             />
             <input
+              className="input__paymentAddress"
               type="email"
               placeholder="e-mail"
               onChange={(event) => setMail(event.target.value)}
               value={mail}
             />
             <input
+              className="input__paymentAddress"
               type="text"
               placeholder="Ulica"
               onChange={(event) => setStreet(event.target.value)}
               value={street}
             />
             <input
+              className="input__paymentAddress"
               type="text"
               placeholder="Kod pocztowy"
               onChange={(event) => setZipCode(event.target.value)}
               value={zipCode}
             />
             <input
+              className="input__paymentAddress"
               type="text"
               placeholder="Miasto"
               onChange={(event) => setCity(event.target.value)}
               value={city}
             />
             <input
+              className="input__paymentAddress"
               type="text"
               placeholder="Nr telefonu"
               onChange={(event) => setPhoneNumber(event.target.value)}
               value={phoneNumber}
             />
           </div>
+          <h2 className="card__details">Dane Karty</h2>
+          <form onSubmit={handleSubmit}>
+            <CardElement
+              options={CARD_ELEMENT_OPTIONS}
+              className="cardElement"
+              onChange={handleChange}
+            />
+            <div className="payment__priceContainer">
+              <CurrencyFormat
+                renderText={(value) => (
+                  <h3 className="amountToPay">Suma do zapłaty: {value}</h3>
+                )}
+                decimalScale={2}
+                value={getBasketTotal(basket)}
+                displayType={'text'}
+                thousandSeparator={true}
+                prefix={'pln '}
+              />
+
+              {/* {name &&
+                lastName &&
+                mail &&
+                street &&
+                zipCode &&
+                city &&
+                phoneNumber && ( */}
+              <button disabled={processing || disabled || succeeded}>
+                <span>
+                  {processing ? (
+                    <p>Przetwarzanie</p>
+                  ) : (
+                    `Zapłać ${getBasketTotal(basket)} zł`
+                  )}
+                </span>
+              </button>
+              {/* )} */}
+            </div>
+
+            {/* Error */}
+            {error && <div>{error}</div>}
+          </form>
         </div>
-        <div className="payment__section">
+        <div className="payment__sectionRight">
           <h2>Przegląd przedmiotów</h2>
-          <div className="payment__itemz">
+          <div className="payment__items">
             {basket.map((item) => (
               <CheckoutProduct
                 id={item.id}
@@ -216,30 +248,6 @@ function PaymentForm() {
           </div>
         </div>
       </div>
-
-      <form onSubmit={handleSubmit}>
-        <CardElement
-          options={card_element_options}
-          className="cardElement"
-          onChange={handleChange}
-        />
-        <div className="payment__priceContainer">
-          <CurrencyFormat
-            renderText={(value) => <h3>Suma do zapłaty: {value}</h3>}
-            decimalScale={2}
-            value={getBasketTotal(basket)}
-            displayType={'text'}
-            thousandSeparator={true}
-            prefix={'pln '}
-          />
-          <button disabled={processing || disabled || succeeded}>
-            <span>{processing ? <p>Przetwarzanie</p> : 'Kup teraz'}</span>
-          </button>
-        </div>
-
-        {/* Error */}
-        {error && <div>{error}</div>}
-      </form>
     </div>
   );
 }
