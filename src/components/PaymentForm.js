@@ -102,7 +102,9 @@ function PaymentForm() {
 
         db.collection('bought').add({
           products: basket,
+          price: getBasketTotal(basket),
           data: [name, lastName, mail, street, zipCode, city, phoneNumber],
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         });
 
         history.replace('/order');

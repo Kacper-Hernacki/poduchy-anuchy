@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useStateValue } from '../StateProvider';
 import './Product.scss';
-import { db, auth } from '../firebase';
 import { Link } from 'react-router-dom';
 
 function Product({
@@ -65,7 +64,7 @@ function Product({
         <h3>{description}</h3>
         <p>Ilość sztuk dostępnych sztuk: {numberOfItems}</p>
         <div className="product__price">
-          <h2>Cena: {price} zł</h2>
+          <h2>{price} zł</h2>
         </div>
 
         {numberOfItems > 0 && (

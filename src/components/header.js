@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Button,
-  Form,
-  FormControl,
-  Nav,
-  Navbar,
-  NavDropdown,
-} from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import './Header.scss';
 import { LinkContainer } from 'react-router-bootstrap';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
@@ -17,12 +10,6 @@ export default function Header() {
 
   return (
     <Navbar className="navbar" bg="light" expand="lg">
-      <LinkContainer to="/">
-        <Navbar.Brand className="navbarLogo" href="#home">
-          Poduchy Anuchy
-        </Navbar.Brand>
-      </LinkContainer>
-
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
@@ -58,7 +45,7 @@ export default function Header() {
           </LinkContainer>
 
           <LinkContainer to="/kosz">
-            <Navbar.Brand className="navbarBasket" href="#home">
+            <Navbar.Brand className="navbarBasket">
               <ShoppingBasketIcon />
               <span className="basket__count">{basket?.length}</span>
             </Navbar.Brand>

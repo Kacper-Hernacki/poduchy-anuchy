@@ -3,7 +3,7 @@ import { useStateValue } from '../StateProvider';
 import CheckoutProduct from './CheckoutProduct';
 import './PaymentAtReceive.scss';
 import { db, firebase } from '../firebase';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';import { getBasketTotal } from '../reducer';
 
 function PaymentAtReceive() {
   const [{ basket }, dispatch] = useStateValue();
@@ -44,7 +44,9 @@ function PaymentAtReceive() {
 
       db.collection('bought').add({
         products: basket,
+        price: getBasketTotal(basket),
         data: [name, lastName, mail, street, zipCode, city, phoneNumber],
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
 
       history.replace('/order');

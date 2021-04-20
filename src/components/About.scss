@@ -1,12 +1,11 @@
 .about {
-  background-color: rgba(0, 0, 0, 0.138);
   margin-left: 5%;
   margin-right: 5%;
-  margin-top: 100px;
+  margin-top: 230px;
   h1 {
     font-family: 'Dancing Script', cursive;
     color: #ffffff !important;
-    text-shadow: 3.45px 3.45px #572e2e;
+    text-shadow: 3.45px 3.45px #333030;
     font-weight: bold !important;
     font-size: 75px;
     text-align: center;
@@ -15,56 +14,49 @@
   .about__container {
     margin-top: 30px;
     display: flex;
-    .about__left {
-      flex: 0.5;
-      display: grid;
-      justify-content: center;
-      img {
-        object-fit: contain;
-        width: 600px !important;
-        // -webkit-filter: drop-shadow(15px 15px 15px #572e2e);
-        // filter: drop-shadow(3px 3px 3px #572e2e);
-        padding: 50px;
-      }
-    }
+    justify-content: center;
 
     .about__right {
       flex: 0.5;
       padding: 50px;
-      padding-right: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
       p {
         font-family: 'Courgette', cursive;
         font-size: 20px;
-        color: #572e2e;
-        // text-shadow: 0.5px 0.5px #431f1f;
+        color: #333030;
         font-weight: bold;
       }
 
       .about__rightContact {
         font-size: 20px;
         color: #ffffff;
-        text-shadow: 1.49px 1.49px #572e2e;
+        text-shadow: 1.49px 1.49px #333030;
       }
 
       button {
         font-family: 'Courgette', cursive;
         cursor: pointer;
         outline: none;
-        border: 4px solid #572e2e;
+        border: 4px solid #333030;
         font-size: 15px;
         font-weight: bold;
-        color: #572e2e;
-        background-color: transparent;
+        color: white;
+        background-color: #333030;
         margin-top: 20px;
         padding: 5px 20px;
-        margin-left: 220px;
+        border-radius: 20px;
+        transition: ease-in-out 200ms;
+        width: 170px;
+        margin-left: auto;
+        margin-right: auto;
       }
       button:hover {
-        color: #fff;
-        background-color: #572e2e6b;
-
-        transition: 200ms;
+        color: #333030;
+        background-color: white;
       }
     }
   }

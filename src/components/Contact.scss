@@ -8,12 +8,11 @@
 }
 
 .contact {
-  background-color: rgba(0, 0, 0, 0.138);
   padding: 30px;
   margin-right: 10%;
   margin-left: 10%;
+  margin-top: 230px;
   padding-top: 0px;
-  margin-top: 100px;
   height: 80%;
   padding-top: 80px;
   padding-bottom: 80px;
@@ -21,7 +20,7 @@
   h1 {
     font-family: 'Dancing Script', cursive;
     color: #ffffff !important;
-    text-shadow: 3.45px 3.45px #572e2e;
+    text-shadow: 3.45px 3.45px #333030;
     font-weight: bold !important;
     font-size: 75px;
     text-align: center;
@@ -35,7 +34,7 @@
     align-items: center;
     h3 {
       font-family: 'Courgette', cursive;
-      color: #572e2e;
+      color: #333030;
       font-size: 20px;
       font-weight: bold;
       margin-bottom: 10px;
@@ -43,23 +42,42 @@
     }
 
     input {
-      width: 400px;
-      border-radius: 10px;
-      padding: 3px;
-      background-color: rgb(220, 220, 228);
-      font-weight: 600;
+      font-family: 'Courgette', cursive;
+      display: block !important;
+      width: 400px !important;
+      position: relative !important;
+      opacity: 1 !important;
       padding-left: 10px;
-      color: #2e2c2c;
+      height: 30px;
+      width: 100%;
+      margin-top: 10px;
+      background-color: white;
+      border-style: none;
+      outline: none;
+      color: #313b3f;
+      border-radius: 4px;
+    }
+
+    input:focus {
+      box-shadow: 0 1px 3px 0 #5e5f5f;
     }
 
     textarea {
-      width: 400px;
-      border-radius: 10px;
-      padding: 3px;
-      background-color: rgb(220, 220, 228);
-      font-weight: 600;
+      font-family: 'Courgette', cursive;
+      display: block !important;
+      width: 400px !important;
+      position: relative !important;
+      opacity: 1 !important;
       padding-left: 10px;
-      color: #2e2c2c;
+      height: 30px;
+      width: 100%;
+      margin-top: 10px;
+      height: 100px;
+      background-color: white;
+      border-style: none;
+      outline: none;
+      color: #313b3f;
+      border-radius: 4px;
     }
 
     .contact__inputText {
@@ -69,21 +87,22 @@
       font-family: 'Courgette', cursive;
       cursor: pointer;
       outline: none;
-      border: 4px solid #572e2e;
+      border: 4px solid #333030;
       font-size: 20px;
       font-weight: bold;
-      color: #572e2e;
-      background-color: transparent;
+      color: white;
+      background-color: #333030;
       margin-top: 20px;
       padding: 5px 20px;
       margin-bottom: 20px;
+      border-radius: 20px;
+      width: 400px;
+      transition: ease-in-out 200ms;
     }
 
     button:hover {
-      color: #fff;
-      background-color: #572e2e6b;
-
-      transition: 200ms;
+      color: #333030;
+      background-color: white;
     }
   }
 }

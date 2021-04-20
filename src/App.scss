@@ -1,16 +1,15 @@
 @import '~bootstrap/scss/bootstrap';
 
+$base-color: #333030;
+$font-secondary: 'Courgette', cursive;
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #b4c7cc !important;
   transition: 0.4s ease-in-out;
   background-image: url(./images/main.png);
   background-repeat: no-repeat;
@@ -48,7 +47,6 @@ body,
 
 Canvas {
   position: relative;
-
   z-index: 10;
 }
 
@@ -78,63 +76,21 @@ Canvas {
   flex-direction: column;
   position: relative;
   z-index: 10;
-}
 
-.container > a > button {
-  font-family: 'Courgette', cursive;
-  cursor: pointer;
-  outline: none;
-  border: 4px solid #572e2e;
-  font-size: 20px;
-  font-weight: bold;
-  color: #572e2e;
-  background-color: transparent;
-  margin-top: 20px;
-  padding: 5px 20px;
-  position: relative;
-  z-index: 1;
-}
-
-.container > a > button:hover {
-  color: #fff;
-  background-color: #572e2e6b;
-
-  transition: 200ms;
-}
-
-.title {
-  font-family: 'Dancing Script', cursive;
-  font-size: 10rem;
-  font-weight: 800;
-  text-align: center;
-  width: 100%;
-  margin: 0 auto;
-  color: rgb(255, 255, 255);
-  text-shadow: 4px 4px #572e2e;
-  span {
-    display: block;
-  }
-  @media (max-width: 1440px) {
-    font-size: 10rem;
-  }
-  button {
+  .title {
     font-family: 'Dancing Script', cursive;
-    font-size: 30px;
-    font-weight: bold;
-    background: none;
-    border: 4px solid #572e2e;
-    color: #572e2e;
-    cursor: pointer;
-    transition: 300ms;
-    border-radius: 8%;
-    padding: 20px;
-  }
-  button:hover {
-    background-color: #572e2e;
-    color: white;
+    font-size: 10rem;
+    font-weight: 800;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    color: rgb(255, 255, 255);
+    text-shadow: 4px 4px $base-color;
+    @media (max-width: 1440px) {
+      font-size: 10rem;
+    }
   }
 }
-
 .loading {
   position: absolute;
   top: 0px;
@@ -145,7 +101,7 @@ Canvas {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 100000000000000000000000;
 }
 
 .loading-bar-container {
@@ -156,7 +112,7 @@ Canvas {
 
 .loading-bar {
   height: 32px;
-  background: #cc7080;
+  background: #f8f8f8;
 }
 
 .app__buy {
@@ -181,14 +137,16 @@ Canvas {
   font-family: 'Courgette', cursive;
   cursor: pointer;
   outline: none;
-  border: 4px solid #572e2e;
+  border: 4px solid $base-color;
+  border-radius: 20px;
   font-size: 20px;
   font-weight: bold;
-  color: #572e2e;
-  background-color: transparent;
+  background-color: $base-color;
+  color: white;
+  transition: ease-in-out 200ms;
 }
 
 .button__products:hover {
-  background-color: #572e2e;
-  color: white;
+  color: $base-color;
+  background-color: white;
 }

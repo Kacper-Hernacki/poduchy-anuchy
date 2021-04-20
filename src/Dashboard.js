@@ -5,6 +5,7 @@ import { auth } from './firebase';
 import { storage, db } from './firebase';
 import { Button } from '@material-ui/core';
 import EditProduct from './EditProduct';
+import BoughtProducts from './BoughtProducts';
 
 function Dashboard() {
   const [{ user }] = useStateValue();
@@ -20,11 +21,18 @@ function Dashboard() {
 
   const [addMode, setAddMode] = useState(true);
   const [editMode, setEditMode] = useState(false);
+  const [boughtMode, setBoughtMode] = useState(false);
 
   const [product, setProduct] = useState(null);
+  const [boughtProducts, setBoughtProducts] = useState(null);
 
   useEffect(() => {
-    if (editMode === true && addMode === false && formData !== '') {
+    if (
+      editMode === true &&
+      addMode === false &&
+      formData !== '' &&
+      boughtMode === false
+    ) {
       db.collection('products')
         .doc('xVN6XLNCssO15UaMb8IymQ2f1as2')
         .collection(`${formData}`)
@@ -37,7 +45,22 @@ function Dashboard() {
           )
         );
     }
-  }, [editMode, addMode, formData]);
+  }, [editMode, addMode, formData, boughtMode]);
+
+  useEffect(() => {
+    if (editMode === false && addMode === false && boughtMode === true) {
+      db.collection('bought').onSnapshot((snapshot) =>
+        setBoughtProducts(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+    }
+  }, [editMode, addMode, formData, boughtMode]);
+
+  console.log(boughtProducts);
 
   const logout = () => {
     if (user) {
@@ -50,6 +73,7 @@ function Dashboard() {
     setAddMode(true);
     setEditMode(false);
     setFormData('');
+    setBoughtMode(false);
   };
 
   const edit = () => {
@@ -57,6 +81,15 @@ function Dashboard() {
     setAddMode(false);
     setEditMode(true);
     setFormData('');
+    setBoughtMode(false);
+  };
+
+  const bought = () => {
+    ///
+    setAddMode(false);
+    setEditMode(false);
+    setFormData('');
+    setBoughtMode(true);
   };
 
   const handleFileChange = (e) => {
@@ -131,8 +164,11 @@ function Dashboard() {
         <button className="dashboard__edit" onClick={edit}>
           Edytuj
         </button>
+        <button className="dashboard__edit" onClick={bought}>
+          Kupione
+        </button>
       </div>
-      {addMode === true && editMode === false && (
+      {addMode === true && editMode === false && boughtMode === false && (
         <div className="dashboard__optionContainer">
           <h2 className="dashboard__addCaption">Dodaj produkt w</h2>
           <div className="dashboard__container">
@@ -218,7 +254,7 @@ function Dashboard() {
         </div>
       )}
 
-      {addMode === false && editMode === true && (
+      {addMode === false && editMode === true && boughtMode === false && (
         <div className="dashboard__optionContainer">
           <h2 className="dashboard__addCaption">Edytuj produkt w</h2>
           <div className="dashboard__container">
@@ -265,6 +301,25 @@ function Dashboard() {
                 price={data.price}
                 amount={data.amount}
                 collectionId={formData}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {addMode === false && editMode === false && boughtMode === true && (
+        <div className="dashboard__optionContainer">
+          <h2 className="dashboard__addCaption">Kupione</h2>
+          <div className="dashboard__edit">
+            {' '}
+            {boughtProducts?.map(({ id, data }) => (
+              <BoughtProducts
+                key={id}
+                id={id}
+                data={data.data}
+                products={data.products}
+                price={data.price}
+                timestamp={data.timestamp}
               />
             ))}
           </div>

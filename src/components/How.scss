@@ -8,56 +8,71 @@
 }
 
 .how {
-  background-color: rgba(0, 0, 0, 0.138);
   margin-left: 5%;
   margin-right: 5%;
   padding-bottom: 30px;
   padding-top: 30px;
-  margin-top: 100px;
+  margin-top: 230px;
   overflow-y: scroll;
   height: 80%;
-  h2 {
-    text-align: center;
-    font-family: 'Dancing Script', cursive;
-    color: #ffffff !important;
-    text-shadow: 1.45px 1.45px #572e2e;
-    font-weight: bold !important;
-    font-size: 35px;
-    text-align: center;
-    margin-top: 30px;
-  }
+
   h1 {
     font-family: 'Dancing Script', cursive;
     color: #ffffff !important;
-    text-shadow: 3.45px 3.45px #572e2e;
+    text-shadow: 3.45px 3.45px #333030;
     font-weight: bold !important;
     font-size: 75px;
     text-align: center;
     margin-top: 10px;
   }
-  .how__container {
+  .how__externalContainer {
+    margin-top: 50px;
     display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    .how__steps {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin-right: 70px;
-      margin-left: 70px;
-      p {
+    .how__container {
+      padding-top: 20px;
+      width: 32%;
+      min-height: 80%;
+      background-color: rgba(255, 255, 255, 0);
+      margin: 10px;
+      border-radius: 20px;
+      padding: 20px;
+      h2 {
         font-family: 'Courgette', cursive;
-        cursor: pointer;
-        outline: none;
-
-        font-size: 15px;
-        font-weight: bold;
-        color: #572e2e;
+        font-size: 30px;
+        text-align: center;
+        margin-bottom: 60px;
+        padding-bottom: 20px;
+        border-bottom: 4px solid #33303010;
       }
-      .MuiSvgIcon-root {
-        font-size: 80px !important;
-        color: #572e2e;
+
+      .how__stepsContainer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        .how__steps {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-right: 70px;
+          margin-left: 70px;
+          margin-top: 15px;
+          p {
+            font-family: 'Courgette', cursive;
+            cursor: pointer;
+            outline: none;
+
+            font-size: 15px;
+            font-weight: bold;
+            color: #333030;
+          }
+          .MuiSvgIcon-root {
+            font-size: 80px !important;
+            color: #333030;
+          }
+        }
       }
     }
   }

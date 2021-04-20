@@ -1,18 +1,21 @@
 import React, { useRef, Suspense, useState, useEffect } from 'react';
+import { useStateValue } from './StateProvider';
 import './App.scss';
+//firebase
+import { auth } from './firebase';
 //Components
 import CookieConsent from 'react-cookie-consent';
-
+// react-router-dom
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
-import { Section } from './components/section';
-
+import ProtectedRoute from './ProtectedRoute';
+// Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import { LinkContainer } from 'react-router-bootstrap';
 // R3F
 import { Canvas, useFrame } from 'react-three-fiber';
-import { Html, useGLTFLoader } from 'drei';
+import { Html, useProgress, useGLTFLoader } from 'drei';
+import { Section } from './components/section';
+//Components
 import Header from './components/header';
 import About from './components/About';
 import Products from './components/Products';
@@ -23,30 +26,30 @@ import Modal from './components/Modal';
 import Payment from './components/Payment';
 import Checkout from './components/Checkout';
 import PaymentForm from './components/PaymentForm';
-
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
 import Order from './components/Order';
 import Cookies from './components/Cookies';
 import Regulamin from './components/Regulamin';
 import Categories from './components/Categories';
-
 import PillowCases from './productsPages/PillowCases';
 import Decoupage from './productsPages/Decoupage';
 import Pillows from './productsPages/Pillows';
 import Others from './productsPages/Others';
 import Login from './Login';
 import Dashboard from './Dashboard';
-import ProtectedRoute from './ProtectedRoute';
-import { useStateValue } from './StateProvider';
-import { auth, db, firebase } from './firebase';
 import ErrorPage from './ErrorPage';
 import PaymentAtReceive from './components/PaymentAtReceive';
+// Stripe
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+// spring
+import { a, useTransition } from '@react-spring/web';
 
+// stripe public key
 const promise = loadStripe(
   'pk_test_51IQb0cLJT82lIrq7JolLUbJl7TcOBFtBiwrVexF6ToaHcSjeCrnn4zpkF3OjSjWSMQUxISBx4uGCXIeyu1ycAvRK00ze0Ot7Ng'
 );
 
+// react-three-fiber 3D Model
 function Model({ url }) {
   const gltf = useGLTFLoader('/pillow.gltf', true);
   return <primitive object={gltf.scene} dispose={null} />;
@@ -97,13 +100,31 @@ const HTMLContent = () => {
   );
 };
 
+function Loader() {
+  const { active, progress } = useProgress();
+  const transition = useTransition(active, {
+    from: { opacity: 1, progress: 0 },
+    leave: { opacity: 0 },
+    update: { progress },
+  });
+  return transition(
+    ({ progress, opacity }, active) =>
+      active && (
+        <a.div className="loading" style={{ opacity }}>
+          <div className="loading-bar-container">
+            <a.div className="loading-bar" style={{ width: progress }}></a.div>
+          </div>
+        </a.div>
+      )
+  );
+}
+
 export default function App() {
-  const [{ user, basket }, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
   const [selectedImg, setSelectedImg] = useState(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      // add isAnonymous function !!!
       if (authUser) {
         dispatch({
           type: 'SET_USER',
@@ -132,7 +153,6 @@ export default function App() {
               return null;
             case '/adminDashboard':
               return null;
-
             default:
               return <Header />;
           }
@@ -243,17 +263,17 @@ export default function App() {
           expires={365}
           buttonText="Ok, rozumiem!"
           style={{
-            background: 'rgba(0,0,0,0.5)',
+            background: '#333030',
             textAlign: 'left',
             position: 'absolute',
             zIndex: '166111591100000',
             bottom: '0',
-            height: '200px',
+            height: '100px',
             fontFamily: 'Courgette',
             fontSize: '20px',
           }}
           buttonStyle={{
-            color: '#572e2e',
+            color: '#333030',
             background: 'white',
             borderRadius: '10px',
             fontWeight: 'bold',
@@ -268,7 +288,7 @@ export default function App() {
           , żeby dowiedzieć się więcej.
         </CookieConsent>
       </Router>
-      <Router></Router>
+      <Loader />
     </>
   );
 }

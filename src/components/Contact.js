@@ -41,7 +41,7 @@ function Contact() {
           <textarea
             name="message"
             placeholder="wiadomość"
-            rows="5"
+            rows="2"
             id=""
             required></textarea>
         </div>

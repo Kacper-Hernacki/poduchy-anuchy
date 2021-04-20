@@ -10,12 +10,11 @@
 }
 
 .checkout {
-  background-color: rgba(0, 0, 0, 0.138);
   margin-left: 5%;
   margin-right: 5%;
   padding-bottom: 30px;
   padding-top: 30px;
-  margin-top: 100px;
+  margin-top: 230px;
   overflow-y: scroll;
   height: 80%;
   padding-left: 30px;
@@ -29,7 +28,7 @@
   display: grid;
   place-items: center;
   flex: 1;
-  color: #572e2e;
+  color: #333030;
 }
 
 .checkout .checkout__empty h2 {
@@ -52,4 +51,5 @@
 
 .checkout .checkout__left {
   flex: 0.7;
+  border-right: 4px solid #333030;
 }

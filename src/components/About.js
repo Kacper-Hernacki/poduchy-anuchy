@@ -1,6 +1,6 @@
 import React from 'react';
 import './About.scss';
-import pillow from '../img/logo-lg.png';
+import pillow from '../images/BRł.png';
 import { Link } from 'react-router-dom';
 
 function About() {
@@ -8,10 +8,6 @@ function About() {
     <div className="about">
       <h1>O mnie</h1>
       <div className="about__container">
-        <div className="about__left">
-          <img src={pillow} alt="" srcset="" />
-        </div>
-
         <div className="about__right">
           <p>Robótki na drutach towarzyszą mi od dzieciństwa.</p>
           <p>

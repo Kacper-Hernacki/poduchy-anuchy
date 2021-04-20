@@ -1,10 +1,4 @@
-.navbarLogo {
-  font-family: 'Dancing Script', cursive;
-  color: #ffffff !important;
-  text-shadow: 1.2px 1.2px #572e2e;
-  font-weight: 800 !important;
-  font-size: 3rem;
-}
+@import '../App';
 
 .navbar {
   background-color: #00000000 !important;
@@ -12,13 +6,13 @@
   top: 0;
   z-index: 166111591;
   width: 100%;
+  padding: 30px;
 }
 
 .navbar__link {
   font-family: 'Courgette', cursive;
-
   font-size: 18px;
-  color: #572e2e !important;
+  color: $base-color !important;
   font-weight: bold !important;
   padding-left: 20px !important;
   padding-right: 20px !important;
@@ -27,23 +21,21 @@
 .navbar__link:focus,
 .navbar__link:active,
 .navbar__link-icon:focus {
-  border: 0px solid #572e2e;
+  border: 0px solid #3030302a;
   box-shadow: none;
   border-radius: 20px;
-  background-color: #572e2e2a;
+  background-color: #3030302a;
 }
 
 .navbarBasket > .MuiSvgIcon-root {
   font-size: 30px !important;
-  color: white !important;
+  color: $base-color !important;
   margin-left: 10px;
-  text-shadow: 1.2px 1.2px #572e2e !important;
 }
 
 .basket__count {
   font-size: 20px;
   font-weight: bold;
-  color: white;
+  color: $base-color;
   margin-left: 3px;
-  text-shadow: 1.2px 1.2px #572e2e;
 }

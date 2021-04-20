@@ -1,0 +1,52 @@
+.boughtProducts {
+  display: flex;
+  border-bottom: 1px solid rgba(92, 92, 92, 0.713);
+  padding-top: 20px;
+}
+
+.boughtProducts .boughtProducts__date {
+  flex: 0.15;
+}
+
+.boughtProducts .boughtProducts__date h3 {
+  font-size: 17px;
+}
+
+.boughtProducts .boughtProducts__date h2 {
+  font-weight: 500;
+}
+
+.boughtProducts .boughtProducts__data {
+  flex: 0.35;
+  padding-left: 10px;
+}
+
+.boughtProducts .boughtProducts__data h3 {
+  font-size: 20px;
+  display: flex;
+}
+
+.boughtProducts .boughtProducts__data h3 p {
+  width: 130px;
+}
+
+.boughtProducts .boughtProducts__data h3 span {
+  padding-left: 10px;
+  font-weight: bold;
+  font-size: 25px !important;
+}
+
+.boughtProducts .boughtProducts__products {
+  flex: 0.35;
+}
+
+.boughtProducts .boughtProducts__allPrice {
+  flex: 0.15;
+  font-size: 20px;
+}
+
+.boughtProducts .boughtProducts__allPrice span {
+  padding-left: 5px;
+  font-weight: bold;
+  font-size: 25px !important;
+}
